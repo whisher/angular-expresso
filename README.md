@@ -1,4 +1,4 @@
 iwdf-pag
 ========
 
-phonegap angularjs gulp start point
+phonegap angularjs gulp seed

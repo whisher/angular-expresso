@@ -1,0 +1,21 @@
+{
+  "name": "iwdf-pag",
+  "version": "0.0.0",
+  "authors": [
+    "Michael Herman <hermanmu@gmail.com>"
+  ],
+  "license": "Apache License",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.0",
+    "angular-ui-router": "~0.2.11",
+    "bootstrap": "~3.2.0",
+    "fontawesome": "~4.1.0"
+  }
+}
