@@ -4,5 +4,6 @@ node_modules/
 bower_components/
 phonegap/
 build/
+tmp/
 
 
