@@ -14,5 +14,5 @@ return gulp.src(config.paths.src.vendor.concat(config.paths.src.scripts))
     .pipe(ngAnnotate())
     .pipe(gulpif(phonegap,uglify()))
     .pipe(gulpif(phonegap,gulp.dest(config.paths.dest.phonegap.scripts),gulp.dest(config.paths.dest.build.scripts)))
-    .pipe(reload({stream:true}));
+    .pipe(gulpif(!phonegap,reload({stream:true})));
 });

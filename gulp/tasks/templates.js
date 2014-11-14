@@ -13,5 +13,5 @@ module.exports = gulp.task('templates', function () {
     .pipe(gulpif(phonegap, minifyHTML({empty: true, spare: true, quotes: true})))
     .pipe(templateCache({ standalone: true,root:'templates' }))
     .pipe(gulp.dest(config.paths.src.templatesCompiled))
-    .pipe(reload({stream:true}));
+    .pipe(gulpif(!phonegap,reload({stream:true})));
 });
