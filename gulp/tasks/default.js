@@ -1,8 +1,24 @@
 'use strict';
 
 var gulp = require('gulp');
-module.exports = gulp.task('default',
-    ['templates', 'lint', 'connect', 'watch']
+var runSequence = require('run-sequence');
+
+module.exports = gulp.task('default', function() {
+    if (phonegap) {
+        runSequence(
+                'clean',
+                ['templates', 'lint'],
+                ['watch', 'connect']
+                );
+    } else {
+        runSequence(
+                'clean',
+                ['index', 'styles', 'images', 'assets', 'templates', 'lint'],
+                'scripts',
+                ['watch', 'connect']
+                );
+    }
+}
 );
 
 

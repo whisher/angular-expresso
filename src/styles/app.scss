@@ -1,0 +1,17 @@
+@import "variables";
+@import "imports";
+
+body {
+  text-align: center;
+  color: #222;
+}
+.welcome {
+  @extend .jumbotron;
+  background: red;
+}
+
+
+a, a:visited {
+  text-decoration: none;
+}
+

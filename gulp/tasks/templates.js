@@ -9,7 +9,7 @@ var minifyHTML = require('gulp-minify-html');
 
 module.exports = gulp.task('templates', function () {
   return gulp.src(config.paths.src.templates)
-    .pipe(gulpif(release, minifyHTML({empty: true, spare: true, quotes: true})))
+    .pipe(gulpif(phonegap, minifyHTML({empty: true, spare: true, quotes: true})))
     .pipe(templateCache({ standalone: true,root:'templates' }))
     .pipe(gulp.dest(config.paths.src.templatesCompiled));
 });

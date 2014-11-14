@@ -1,18 +1,18 @@
 'use strict';
 
 var gulp = require('gulp');
-var watch = require('gulp-watch');
-var connect = require('gulp-connect');
-var jshint = require('gulp-jshint');
-var stylish = require('jshint-stylish');
+
+
+
 
 module.exports = gulp.task('watch', function () {
-    watch(config.paths.src.scripts)
-    .pipe(jshint())
-    .pipe(jshint.reporter(stylish))
-        .pipe(connect.reload());
-    watch(config.paths.src.templates, ['templates'])
-        .pipe(connect.reload());
-    watch(config.paths.src.index)
-        .pipe(connect.reload());
+   
+	var templatesWatcher = gulp.watch(config.paths.src.templates, ['templates','scripts','reload']);
+	templatesWatcher.on('change', function(event) {
+		console.log('File ' + event.path + ' was ' + event.type + ', running tasks templates');
+	});
+ 	var scriptsWatcher = gulp.watch(config.paths.src.scripts, ['lint','scripts','reload']);
+	scriptsWatcher.on('change', function(event) {
+		console.log('File ' + event.path + ' was ' + event.type + ', running tasks scripts');
+	});
 });

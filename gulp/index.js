@@ -6,8 +6,8 @@ var fs = require('fs'),
 
 require('./config');
 
-// --release flag when executing a task
-global.release = argv.release;
+// --phonegap flag when executing a task
+global.phonegap = argv.phonegap;
 
 tasks.forEach(function (task) {
   require('./tasks/' + task);
