@@ -1,6 +1,8 @@
 'use strict';
 
 var gulp = require('gulp');
+var browserSync = require('browser-sync');
+var reload      = browserSync.reload;
 var gulpif = require('gulp-if');
 var rename = require('gulp-rename');
 var csso = require('gulp-csso');
@@ -20,5 +22,6 @@ module.exports = gulp.task('styles', function () {
     .pipe(autoprefixer('last 1 version'))
     .pipe(gulpif(phonegap, csso()))
     .pipe(rename({basename: config.filenames.styles}))//https://github.com/sindresorhus/gulp-ruby-sass/issues/113#issuecomment-53157670
-    .pipe(gulpif(phonegap, gulp.dest(config.paths.dest.phonegap.styles), gulp.dest(config.paths.dest.build.styles) ));
+    .pipe(gulpif(phonegap, gulp.dest(config.paths.dest.phonegap.styles), gulp.dest(config.paths.dest.build.styles) ))
+    .pipe(reload({stream:true}));
 });

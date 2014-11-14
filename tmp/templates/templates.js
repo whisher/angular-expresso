@@ -1,1 +1,1 @@
-angular.module("templates", []).run(["$templateCache", function($templateCache) {$templateCache.put("templates/home/index.html","<h1>xxxxddddOhPippo999yterer</h1>");}]);
+angular.module("templates", []).run(["$templateCache", function($templateCache) {$templateCache.put("templates/home/index.html","<h1>OhPippo</h1>");}]);

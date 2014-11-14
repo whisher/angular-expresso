@@ -29406,7 +29406,7 @@ angular.module('ui.router.state')
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
 
-angular.module("templates", []).run(["$templateCache", function($templateCache) {$templateCache.put("templates/home/index.html","<h1>xxxxddddOhPippo999yterer</h1>");}]);
+angular.module("templates", []).run(["$templateCache", function($templateCache) {$templateCache.put("templates/home/index.html","<h1>OhPippo</h1>");}]);
 'use strict';
 
 /* global app:true */
@@ -29427,7 +29427,7 @@ app.run(["$rootScope", function ($rootScope) {
 'use strict';
 
 app.controller('HomeController',["$scope", function($scope) { 
-console.log('ohpippo');  
+console.log('ohpippo123');  
 }]);
 'use strict';
 

@@ -15,7 +15,7 @@ module.exports = gulp.task('default', function() {
                 'clean',
                 ['index', 'styles', 'images', 'assets', 'templates', 'lint'],
                 'scripts',
-                ['watch', 'connect']
+                ['watch', 'serve']
                 );
     }
 }
