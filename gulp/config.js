@@ -1,5 +1,5 @@
 global.SRC_FOLDER = 'src';
-global.SCRIPTS_FOLDER = SRC_FOLDER + '/scripts';
+global.SCRIPTS_FOLDER = SRC_FOLDER + '/modules';
 global.BUILD_FOLDER = 'build';
 global.PHONEGAP_FOLDER = 'phonegap/www';
 global.TMP_FOLDER = 'tmp';
