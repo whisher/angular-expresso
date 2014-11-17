@@ -3,6 +3,5 @@
     "browser": true,
     "globals": {
         "angular": false,
-        "app":false
     }
 }
