@@ -3,7 +3,7 @@
 
 function HomeController() {
     var home = this;
-    home.test = 'OhPippo';
+    home.welcome = 'Welcome!';
 }
 
 angular.module('home.controllers', [])

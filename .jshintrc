@@ -2,6 +2,6 @@
     "node": true,
     "browser": true,
     "globals": {
-        "angular": false,
+        "angular": false
     }
 }

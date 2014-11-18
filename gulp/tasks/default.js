@@ -13,8 +13,8 @@ module.exports = gulp.task('default', function() {
     } else {
         runSequence(
                 'clean',
-                ['index', 'styles', 'images', 'assets', 'templates', 'lint'],
-                'scripts',
+                ['index', 'styles', 'images', 'fonts', 'templates', 'lint'],
+                'vendor','scripts',
                 ['watch', 'serve']
                 );
     }

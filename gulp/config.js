@@ -8,44 +8,46 @@ global.config = {
     paths: {
         src: {
             index: SRC_FOLDER + '/index.html',
-            assets: [SRC_FOLDER + '/assets/**/*', '!' + SRC_FOLDER + '/assets/images/**/*'],
-            images: SRC_FOLDER + '/assets/images/**/*',
             styles: SRC_FOLDER + '/styles/app.scss',
-            stylesGlob: SRC_FOLDER + '/styles/**/*.scss',
             scripts: [
                 TMP_FOLDER + '/templates/templates.js',
-                SCRIPTS_FOLDER + '/home/**/*.js',
-                SCRIPTS_FOLDER + '/index.js'
+                SRC_FOLDER + '/modules/**/*.js'
             ],
             vendor:[
-                'bower_components/angular/angular.js',
-                'bower_components/angular-ui-router/release/angular-ui-router.js'
+                'bower_components/angular/angular.min.js',
+                'bower_components/angular-ui-router/release/angular-ui-router.min.js',
+                'bower_components/ionic/release/js/ionic.min.js',
+                'bower_components/ionic/release/js/ionic-angular.min.js'
             ],
+            fonts: [
+                'bower_components/ionic/release/fonts/**'
+            ],
+            images: SRC_FOLDER + '/images/**/*',
             templates: SRC_FOLDER + '/templates/**/*.html',
-            templatesCompiled: TMP_FOLDER + '/templates'
+            templatesCompiled: TMP_FOLDER + '/templates',
+            e2e : ['src/tests/e2e/**/*.js']
         },
         dest: {
             build: {
                 index: BUILD_FOLDER,
                 styles: BUILD_FOLDER + '/styles',
                 scripts: BUILD_FOLDER + '/scripts',
-                images: BUILD_FOLDER + '/assets/images',
-                assets: BUILD_FOLDER + '/assets',
+                fonts: BUILD_FOLDER + '/fonts',
+                images: BUILD_FOLDER + '/images',
+                
             },
             phonegap: {
                 index: PHONEGAP_FOLDER,
                 styles: PHONEGAP_FOLDER + '/styles',
                 scripts: PHONEGAP_FOLDER + '/scripts',
-                images: BUILD_FOLDER + '/assets/images',
-                assets: BUILD_FOLDER + '/assets',
+                fonts: PHONEGAP_FOLDER + '/fonts',
+                images: PHONEGAP_FOLDER + '/images'
             }
         }
     },
     filenames:{ 
         styles: 'bundle',
-        scripts: 'bundle.js'
-    },
-    ports: {
-        staticServer: 8888,
+        vendor: 'vendor.js',
+        scripts: 'scripts.js'
     }
 };

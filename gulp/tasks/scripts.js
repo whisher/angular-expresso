@@ -9,7 +9,7 @@ var uglify = require('gulp-uglify');
 var ngAnnotate = require('gulp-ng-annotate');
 
 module.exports = gulp.task('scripts', function () {
-return gulp.src(config.paths.src.vendor.concat(config.paths.src.scripts))
+return gulp.src(config.paths.src.scripts)
     .pipe(concat(config.filenames.scripts))
     .pipe(ngAnnotate())
     .pipe(gulpif(phonegap,uglify()))

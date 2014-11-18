@@ -1,17 +1,5 @@
 @import "variables";
 @import "imports";
 
-body {
-  text-align: center;
-  color: #222;
-}
-.welcome {
-  @extend .jumbotron;
-  background: #eee;
-}
 
-
-a, a:visited {
-  text-decoration: none;
-}
 
