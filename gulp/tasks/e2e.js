@@ -2,7 +2,6 @@
 
 var gulp = require('gulp');
 var protractor = require('gulp-protractor').protractor;
-var args = require('yargs').argv;
 var express = require('express');
 var app = express();
 app.use(express.static(__dirname + '/../../build'));
