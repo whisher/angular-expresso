@@ -2,6 +2,14 @@
     "node": true,
     "browser": true,
     "globals": {
+        "//" : "Start global gulp - Todo refactoring",
+    	"config":false,
+    	"phonegap":false,
+    	"SRC_FOLDER":false,
+        "TMP_FOLDER":false,
+        "BUILD_FOLDER": false,
+        "PHONEGAP_FOLDER":false,
+        "//" : "End global gulp",
         "angular": false
     }
 }

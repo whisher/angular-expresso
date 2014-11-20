@@ -1,7 +1,9 @@
+'use strict';
+/* global describe, beforeEach,  it, before,  after, afterEach, inject, expect */
 
 describe('Home Controller Test', function() {
     var $rootScope, $scope, $controller, home;
-    beforeEach(angular.mock.module('home.controllers'));
+    beforeEach(module('home.controllers'));
     beforeEach(inject(function(_$rootScope_, _$controller_){
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
@@ -12,3 +14,4 @@ describe('Home Controller Test', function() {
         expect($scope.home.welcome).toEqual('Welcome!');
     });
 });
+

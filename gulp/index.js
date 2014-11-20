@@ -1,5 +1,8 @@
 'use strict';
 
+/* global phonegap:true */
+/* exported phonegap */
+
 var fs = require('fs'),
   argv = require('yargs').argv,
   tasks = fs.readdirSync('./gulp/tasks/');

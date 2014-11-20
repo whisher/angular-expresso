@@ -3,8 +3,9 @@ describe('homepage', function() {
         browser.get('/');
     });
     it('should show welcome!', function() {
-       var jumbotron = element.all(by.css('h1'));
-       //console.log(jumbotron);
+       var h1 = element.all(by.css('h1'));
+       console.log( element( by.binding('iwdif')) );
+       console.log( h1.get(0) );
       // expect(jumbotron.count()).toBe(1);
     });
     

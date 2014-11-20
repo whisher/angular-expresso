@@ -1,3 +1,8 @@
+'use strict';
+
+/* global config:true */
+/* exported config */
+
 global.SRC_FOLDER = 'src';
 global.SCRIPTS_FOLDER = SRC_FOLDER + '/modules';
 global.BUILD_FOLDER = 'build';
@@ -25,7 +30,13 @@ global.config = {
             images: SRC_FOLDER + '/images/**/*',
             templates: SRC_FOLDER + '/templates/**/*.html',
             templatesCompiled: TMP_FOLDER + '/templates',
-            e2e : ['src/tests/e2e/**/*.js']
+            dev: [
+                'karma.conf.js',
+                'protractor.conf.js',
+                'gulp/**/*.js'
+            ],
+            unit : [SRC_FOLDER + '/tests/unit/**/*.js'],
+            e2e : [SRC_FOLDER + '/tests/e2e/**/*.js']
         },
         dest: {
             build: {
@@ -46,7 +57,7 @@ global.config = {
         }
     },
     filenames:{ 
-        styles: 'bundle',
+        styles: 'bundle.css',
         vendor: 'vendor.js',
         scripts: 'scripts.js'
     }

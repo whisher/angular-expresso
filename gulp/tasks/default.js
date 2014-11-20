@@ -7,13 +7,14 @@ module.exports = gulp.task('default', function() {
     if (phonegap) {
         runSequence(
                 'clean',
-                ['templates', 'lint'],
-                ['watch', 'connect']
+                ['index', 'styles', 'images', 'fonts', 'templates', 'hint'],
+                'vendor','scripts',
+                ['serve']
                 );
     } else {
         runSequence(
                 'clean',
-                ['index', 'styles', 'images', 'fonts', 'templates', 'lint'],
+                ['index', 'styles', 'images', 'fonts', 'templates', 'hint'],
                 'vendor','scripts',
                 ['watch', 'serve']
                 );

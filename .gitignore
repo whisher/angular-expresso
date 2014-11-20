@@ -3,8 +3,9 @@ npm-debug.log
 .sass-cache/
 node_modules/
 bower_components/
-phonegap/
 build/
 tmp/
+phonegap/
+
 
 
