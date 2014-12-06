@@ -1,0 +1,16 @@
+
+.morra {
+   @extend .col;
+}
+.paper {
+   @extend .morra;
+}
+.rock {
+   @extend .morra;
+}
+.scissor {
+   @extend .morra;
+}  
+.center{
+     text-align:center;
+}

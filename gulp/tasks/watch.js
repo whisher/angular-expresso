@@ -14,6 +14,11 @@ module.exports = gulp.task('watch', function() {
         console.log('File ' + event.path + ' was ' + event.type + ', running tasks unit');
     });
     
+    var indexWatcher = gulp.watch(config.paths.src.index, ['index']);
+    indexWatcher.on('change', function(event) {
+        console.log('File ' + event.path + ' was ' + event.type + ', running tasks index');
+    });
+    
     var e2eWatcher = gulp.watch(config.paths.src.e2e, ['hint','e2e']);
     e2eWatcher.on('change', function(event) {
         console.log('File ' + event.path + ' was ' + event.type + ', running tasks e2e');

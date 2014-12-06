@@ -1,5 +1,7 @@
-iwdf-pag-ionic  Boilerlate
-=================================
+# [angular-bootstrap-sass-gulp-seed](https://github.com/whisher/angular-bootstrap-sass-gulp-seed/)
+
+
+**Brought to you by [Fabio Bedini aka whisher](http://ilwebdifabio.it) [[@ilwebdifabio](https://twitter.com/ilwebdifabio)]**
 
 ## Credits
 * [Cordova-Angular-Browserify](https://github.com/evanshortiss/cordova-angular-browserify)

@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('home', [
-      'ui.router',
+      'ionic',
       'templates',
       'home.controllers',
       'home.routes'

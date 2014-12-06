@@ -1,11 +1,21 @@
 // Karma configuration
 
-
+var basePath = '.';
+require(basePath + '/gulp/config');
+var src = config.paths.src;
+var scriptsTotests = [
+    'bower_components/angular-mocks/angular-mocks.js',
+    'tmp/templates/templates.js',
+    'src/modules/home/**/*.js',
+    'src/tests/unit/**/*.js'];
+var files = src.vendor.concat(scriptsTotests);
+  
 module.exports = function(config) {
+  
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '.',
+    basePath: basePath,
 
 
     // frameworks to use
@@ -14,15 +24,7 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
-    files: [
-        'bower_components/angular/angular.min.js',
-        'bower_components/angular-mocks/angular-mocks.js',
-        'bower_components/ionic/release/js/ionic.min.js',
-        'bower_components/ionic/release/js/ionic-angular.min.js',
-        'tmp/templates/templates.js',
-        'src/modules/home/**/*.js',
-        'src/tests/unit/**/*.js'
-    ],
+    files: files,
 
 
     // list of files to exclude

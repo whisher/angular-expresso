@@ -1,0 +1,19 @@
+<ion-content>
+    <div class="card" ng-show="currentPlayer">
+        <div class="item center">
+            <img ng-src="images/{{currentPlayer}}.jpg">
+        </div>
+    </div>
+    <div class="card" ng-show="currentServer">
+        <div class="item center">
+            <img ng-src="images/{{currentServer}}.jpg">
+        </div>
+    </div>  
+</ion-content>
+<div class="bar bar-footer bar-calm">
+<div class="row title">
+    <div class="morra" data-ng-repeat="image in images">
+        <img ng-src="images/{{image}}.jpg" ng-click="play({img:image})">
+    </div>
+</div>
+</div>
