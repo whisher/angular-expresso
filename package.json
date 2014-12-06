@@ -1,16 +1,16 @@
 {
   "author": "Fabio Bedini aka Whisher",
-  "name": "angular-bootstrap-sass-gulp-seed",
+  "name": "angular-bootstrap-cordova-seed",
   "email": "io@ilwebdifabio.it",
   "url": "http://ilwebdifabio.it",
   "version": "1.0.0",
-  "homepage": "https://github.com/whisher/angular-bootstrap-sass-gulp-seed",
+  "homepage": "https://github.com/whisher/angular-bootstrap-cordova-seed",
   "description": "Angularjs seed with bootstrap-sass and gulp.",
   "license": "MIT",
-  "bugs": "https://github.com/whisher/angular-bootstrap-sass-gulp-seed/issues",
+  "bugs": "https://github.com/whisher/angular-bootstrap-cordova-seed/issues",
   "repository": {
     "type": "git",
-    "url": "git@github.com:whisher/angular-bootstrap-sass-gulp-seed.git"
+    "url": "git@github.com:whisher/angular-bootstrap-cordova-seed.git"
   }, 
   "scripts": {
     "postinstall": "bower cache clean && bower install"

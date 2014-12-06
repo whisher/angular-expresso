@@ -1,7 +1,9 @@
-# [angular-bootstrap-sass-gulp-seed](https://github.com/whisher/angular-bootstrap-sass-gulp-seed/)
+# [angular-bootstrap-cordova-seed](https://github.com/whisher/angular-bootstrap-cordova-seed/)
 
 
 **Brought to you by [Fabio Bedini aka whisher](http://ilwebdifabio.it) [[@ilwebdifabio](https://twitter.com/ilwebdifabio)]**
+
+**Speed up your [AngularJS](http://angularjs.org) development with a complete and scalable gulpjs based build system that scaffolds the project for you with bootstrap sass and cordova.**
 
 ## Credits
 * [Cordova-Angular-Browserify](https://github.com/evanshortiss/cordova-angular-browserify)

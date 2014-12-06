@@ -1,13 +1,6 @@
 {
-  "name": "iwdf-pag",
-  "version": "0.0.1",
-  "authors": [
-    "Fabio Bedini aka Whisher <io@ilwebdifabio.it>"
-  ],
-  "license": "Apache License",
-  "ignore": [
-    "**/.*"
-  ],
+  "name": "angular-bootstrap-cordova-seed",
+  "version": "1.0.0",
   "dependencies": {
     "angular": "~1.3.0",
     "bootstrap-sass-official": "~3.3.1",
