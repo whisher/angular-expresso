@@ -8,7 +8,7 @@
     	"SRC_FOLDER":false,
         "TMP_FOLDER":false,
         "BUILD_FOLDER": false,
-        "PHONEGAP_FOLDER":false,
+        "RELEASE_FOLDER":false,
         "//" : "End global gulp",
         "angular": false
     }

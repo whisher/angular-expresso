@@ -6,7 +6,7 @@
 global.SRC_FOLDER = 'src';
 global.SCRIPTS_FOLDER = SRC_FOLDER + '/modules';
 global.BUILD_FOLDER = 'build';
-global.PHONEGAP_FOLDER = 'phonegap/www';
+global.RELEASE_FOLDER = 'phonegap/www';
 global.TMP_FOLDER = 'tmp';
 
 global.config = {
@@ -47,11 +47,11 @@ global.config = {
                 
             },
             phonegap: {
-                index: PHONEGAP_FOLDER,
-                styles: PHONEGAP_FOLDER + '/styles',
-                scripts: PHONEGAP_FOLDER + '/scripts',
-                fonts: PHONEGAP_FOLDER + '/fonts',
-                images: PHONEGAP_FOLDER + '/images'
+                index: RELEASE_FOLDER,
+                styles: RELEASE_FOLDER + '/styles',
+                scripts: RELEASE_FOLDER + '/scripts',
+                fonts: RELEASE_FOLDER + '/fonts',
+                images: RELEASE_FOLDER + '/images'
             }
         }
     },
