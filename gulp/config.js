@@ -19,15 +19,12 @@ global.config = {
                 SRC_FOLDER + '/modules/**/*.js'
             ],
             vendor:[
-                'bower_components/ionic/release/js/ionic.min.js',
-                'bower_components/angular/angular.min.js',
-                'bower_components/angular-animate/angular-animate.min.js',
-                'bower_components/angular-sanitize/angular-sanitize.min.js',
-                'bower_components/angular-ui-router/release/angular-ui-router.min.js',
-                'bower_components/ionic/release/js/ionic-angular.min.js',
+               'bower_components/angular/angular.min.js',
+               'bower_components/angular-ui-router/release/angular-ui-router.min.js'
             ],
             fonts: [
-                'bower_components/ionic/release/fonts/**'
+                'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/**',
+                'bower_components/fontawesome/fonts/**'
             ],
             images: SRC_FOLDER + '/images/**/*',
             templates: SRC_FOLDER + '/templates/**/*.html',

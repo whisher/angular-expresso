@@ -15,7 +15,7 @@ function run($log) {
     $log.debug('App is running!');
 }
 
-angular.module('iwdf', ['home'])
+angular.module('app', ['home'])
     .config(config)
     .run(run);
     

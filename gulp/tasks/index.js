@@ -9,11 +9,11 @@ var minifyHTML = require('gulp-minify-html');
 
 module.exports = gulp.task('index', function () {
     return gulp.src(config.paths.src.index)
-        .pipe(gulpif(phonegap, minifyHTML({comments: true, empty: true, spare: true, quotes: true})))
+        .pipe(gulpif(release, minifyHTML({comments: true, empty: true, spare: true, quotes: true})))
         .pipe(
           replace('<!--styles-->', '<link rel="stylesheet" href="styles/' + config.filenames.styles + '">')
         )
-        .pipe(gulpif(phonegap,
+        .pipe(gulpif(release,
           replace('<!--cordova-->', '<script type="text/javascript" src="cordova.js"></script>'),
           replace('<!--cordova-->', '')
         ))
@@ -23,8 +23,8 @@ module.exports = gulp.task('index', function () {
         .pipe(
           replace('<!--scripts-->', '<script src="scripts/' + config.filenames.scripts + '"></script>')
         )
-        .pipe(gulpif(phonegap,
+        .pipe(gulpif(release,
           gulp.dest(config.paths.dest.phonegap.index),
           gulp.dest(config.paths.dest.build.index)))
-        .pipe(gulpif(!phonegap,reload({stream:true})));
+        .pipe(gulpif(!release,reload({stream:true})));
 });

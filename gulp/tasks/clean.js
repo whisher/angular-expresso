@@ -2,9 +2,19 @@
 
 var gulp = require('gulp');
 var gulpif = require('gulp-if');
-var rimraf = require('gulp-rimraf');
+var del = require('del');
 
-module.exports = gulp.task('clean', function () {
-	return gulpif(phonegap, gulp.src(PHONEGAP_FOLDER, {read: false}), gulp.src(BUILD_FOLDER, {read: false}))
-    .pipe(rimraf());
+module.exports = gulp.task('clean', function (cb) {
+    if (release) {
+        del([
+            BUILD_FOLDER,
+            TMP_FOLDER
+        ], cb);
+    }
+    else {
+        del([
+            BUILD_FOLDER,
+            TMP_FOLDER
+        ], cb);
+    }
 });

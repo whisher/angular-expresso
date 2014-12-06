@@ -2,6 +2,7 @@
 
 var gulp = require('gulp');
 
+//https://github.com/gulpjs/gulp/issues/217
 module.exports = gulp.task('watch', function() {
     
     var devFilesWatcher = gulp.watch(config.paths.src.dev, ['hint']);

@@ -4,7 +4,7 @@ var gulp = require('gulp');
 var runSequence = require('run-sequence');
 
 module.exports = gulp.task('default', function() {
-    if (phonegap) {
+    if (release) {
         runSequence(
                 'clean',
                 ['index', 'styles', 'images', 'fonts', 'templates', 'hint'],

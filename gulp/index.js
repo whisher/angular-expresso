@@ -1,7 +1,7 @@
 'use strict';
 
-/* global phonegap:true */
-/* exported phonegap */
+/* global release:true */
+/* exported release */
 
 var fs = require('fs'),
   argv = require('yargs').argv,
@@ -10,7 +10,7 @@ var fs = require('fs'),
 require('./config');
 
 // --phonegap flag when executing a task
-global.phonegap = argv.phonegap;
+global.release = argv.release;
 
 tasks.forEach(function (task) {
   require('./tasks/' + task);

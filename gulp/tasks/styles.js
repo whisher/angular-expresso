@@ -23,9 +23,9 @@ var sassOptions = { // The options to be passed to sass()
 module.exports = gulp.task('styles', function () {
   return gulp.src(config.paths.src.styles)
     .pipe(autoprefixer('last 1 version'))
-    .pipe(gulpif(phonegap, csso()))
-    .pipe(gulpif(phonegap, sass(sassOptions).on('error', handleError), sass(sassOptions).on('error', handleError)))
+    .pipe(gulpif(release, csso()))
+    .pipe(gulpif(release, sass(sassOptions).on('error', handleError), sass(sassOptions).on('error', handleError)))
     .pipe(rename(config.filenames.styles))
-    .pipe(gulpif(phonegap, gulp.dest(config.paths.dest.phonegap.styles), gulp.dest(config.paths.dest.build.styles) ))
-    .pipe(gulpif(!phonegap,reload({stream:true})));
+    .pipe(gulpif(release, gulp.dest(config.paths.dest.phonegap.styles), gulp.dest(config.paths.dest.build.styles) ))
+    .pipe(gulpif(!release,reload({stream:true})));
 });

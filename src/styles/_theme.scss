@@ -1,16 +1,13 @@
+body {
+  text-align: center;
+  color: #222;
+}
+.welcome {
+  @extend .jumbotron;
+  background: #eee;
+}
 
-.morra {
-   @extend .col;
-}
-.paper {
-   @extend .morra;
-}
-.rock {
-   @extend .morra;
-}
-.scissor {
-   @extend .morra;
-}  
-.center{
-     text-align:center;
+
+a, a:visited {
+  text-decoration: none;
 }

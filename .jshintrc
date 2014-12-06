@@ -4,7 +4,7 @@
     "globals": {
         "//" : "Start global gulp - Todo refactoring",
     	"config":false,
-    	"phonegap":false,
+    	"release":false,
     	"SRC_FOLDER":false,
         "TMP_FOLDER":false,
         "BUILD_FOLDER": false,
