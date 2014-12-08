@@ -7,7 +7,7 @@ angular.element(document).ready(function() {
 
 function config($locationProvider, $urlRouterProvider, $logProvider) {
     $locationProvider.hashPrefix('!');
-    $urlRouterProvider.otherwise('/morra');  
+    $urlRouterProvider.otherwise('/');  
     $logProvider.debugEnabled(true);
 }
 
@@ -15,7 +15,7 @@ function run($log) {
     $log.debug('App is running!');
 }
 
-angular.module('app', ['home','morra'])
+angular.module('app', ['home'])
     .config(config)
     .run(run);
     
