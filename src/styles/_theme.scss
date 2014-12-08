@@ -3,7 +3,7 @@ body {
   color: #222;
 }
 .welcome {
-  @extend .jumbotron;
+  @extend .jumbotron; 
   background: #eee;
 }
 

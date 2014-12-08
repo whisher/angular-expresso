@@ -13,7 +13,8 @@ global.config = {
     paths: {
         src: {
             index: SRC_FOLDER + '/index.html',
-            styles: SRC_FOLDER + '/styles/app.scss',
+            mainStyles: SRC_FOLDER + '/styles/app.scss',
+            styles: SRC_FOLDER + '/styles/*.scss',
             scripts: [
                 TMP_FOLDER + '/templates/templates.js',
                 SRC_FOLDER + '/modules/**/*.js'

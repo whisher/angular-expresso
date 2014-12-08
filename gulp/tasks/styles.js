@@ -21,7 +21,7 @@ var sassOptions = { // The options to be passed to sass()
 
 //https://github.com/jgoux/generator-angulpify/issues/19
 module.exports = gulp.task('styles', function () {
-  return gulp.src(config.paths.src.styles)
+  return gulp.src(config.paths.src.mainStyles)
     .pipe(autoprefixer('last 1 version'))
     .pipe(gulpif(release, csso()))
     .pipe(gulpif(release, sass(sassOptions).on('error', handleError), sass(sassOptions).on('error', handleError)))
