@@ -13,5 +13,5 @@ module.exports = gulp.task('templates', function () {
     .pipe(gulpif(release, minifyHTML({empty: true, spare: true, quotes: true})))
     .pipe(templateCache({ standalone: true,root:'templates' }))
     .pipe(gulp.dest(config.paths.src.templatesCompiled))
-    .pipe(gulpif(!release,reload({stream:true})));
+    .pipe(reload({stream:true}));
 });
