@@ -23,7 +23,9 @@
     "express-logger": "0.0.3",
     "express-session": "^1.9.3",
     "formidable": "^1.0.16",
+    "lodash": "^2.4.1",
     "method-override": "^2.3.0",
+    "mongoose": "^3.8.21",
     "morgan": "^1.5.0",
     "serve-favicon": "^2.2.0"
   },

@@ -1,11 +1,32 @@
+# --------------------
+# Node Files
+# --------------------
+.nodemonignore
 npm-debug.log
-.sass-cache/
 node_modules/
-bower_components/
+
+# --------------------
+# SASS Files
+# --------------------
+.sass-cache/
+
+# --------------------
+# Bower Files
+# --------------------
+.bower-*/
+bower_components
+
+# --------------------
+# App Files
+# --------------------
 build/
 tmp/
 phonegap/
 src/tests/unit-result/
+
+# --------------------
+# App Secret
+# --------------------
 
 
 

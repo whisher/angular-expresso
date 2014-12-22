@@ -10,10 +10,21 @@ var favicon = require('serve-favicon');
 var morgan = require('morgan');
 var errorHandler = require('errorhandler');
 var methodOverride = require('method-override');
-
+var mongoose = require('mongoose');
 app.disable('x-powered-by');
 
+var init = require('./config/init.js');
+console.log(init);
+mongoose.connect('mongodb://localhost/test');
+var Cat = mongoose.model('Cat', { name: String });
 
+var kitty = new Cat({ name: 'Zildjian' });
+kitty.save(function (err) {
+  if (err) {
+  console.log(err);	
+  }
+  console.log('meow');
+});
 
 // set up handlebars view engine
 /*var handlebars = require('express-handlebars')
@@ -69,7 +80,7 @@ app.use(function(req, res, next){
 	next();
 });
 
-
+console.log( process.env.MONGOHQ_URL);
 app.get('/', function(req, res) {
 	res.sendFile(path.resolve('../build/index.html'));
 });
