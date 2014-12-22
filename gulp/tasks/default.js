@@ -7,16 +7,17 @@ module.exports = gulp.task('default', function() {
     if (release) {
         runSequence(
                 'clean',
-                ['index', 'styles', 'images', 'fonts', 'templates', 'hint'],
+                ['index', 'styles',  'fonts', 'templates', 'hint'],
                 'vendor','scripts',
                 ['serve']
                 );
     } else {
         runSequence(
                 'clean',
-                ['index', 'styles', 'images', 'fonts', 'templates', 'hint'],
+                ['index', 'styles', 'fonts', 'templates', 'hint'],
                 'vendor','scripts',
                 ['watch', 'serve']
+              
                 );
     }
 }
