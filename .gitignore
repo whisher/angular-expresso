@@ -23,7 +23,7 @@ build/
 tmp/
 phonegap/
 src/tests/unit-result/
-
+server/log/
 # --------------------
 # App Secret
 # --------------------
