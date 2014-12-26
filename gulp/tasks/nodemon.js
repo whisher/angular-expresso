@@ -4,11 +4,11 @@ var gulp = require('gulp');
 var nodemon = require('gulp-nodemon');
 var browserSync = require('browser-sync');
 var BROWSER_SYNC_RELOAD_DELAY = 500;
-var baseDir =  release ? RELEASE_FOLDER + '/' : BUILD_FOLDER + '/';
+
 
 module.exports = gulp.task('nodemon', function (cb) {
 	var called = false;
-	return nodemon({script: './server/server.js'})
+	return nodemon({script: './server.js'})
 	.on('start', function () {
 		 // ensure start only got called once
 		if (!called) {

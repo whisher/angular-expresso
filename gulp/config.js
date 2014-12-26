@@ -3,7 +3,7 @@
 /* global config:true */
 /* exported config */
 
-global.SRC_FOLDER = 'src';
+global.SRC_FOLDER = 'public';
 global.SCRIPTS_FOLDER = SRC_FOLDER + '/modules';
 global.BUILD_FOLDER = 'build';
 global.RELEASE_FOLDER = 'phonegap/www';
@@ -20,8 +20,8 @@ global.config = {
                 SRC_FOLDER + '/modules/**/*.js'
             ],
             vendor:[
-               'bower_components/angular/angular.min.js',
-               'bower_components/angular-ui-router/release/angular-ui-router.min.js'
+               'bower_components/angular/angular.js',
+               'bower_components/angular-ui-router/release/angular-ui-router.js'
             ],
             fonts: [
                 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/**',

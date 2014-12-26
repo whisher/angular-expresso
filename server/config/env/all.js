@@ -1,10 +1,12 @@
 'use strict';
 
 var path = require('path'),
-  rootPath = path.normalize(__dirname + '/../..');
+  rootPath = process.cwd(),
+  serverPath = rootPath + '/server'; 
 
 module.exports = {
-  root: rootPath,
+  rootPath: rootPath,
+  serverPath: serverPath,
   http: {
     port: process.env.PORT || 3000
   },

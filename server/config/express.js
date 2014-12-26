@@ -24,8 +24,13 @@ module.exports = function(config, app, passport, db) {
   // Prettify HTML
   app.locals.pretty = true;
 
-  // cache=memory or swig dies in NODE_ENV=production
-  app.locals.cache = 'memory';
+  // Environment dependent middleware
+  if (process.env.NODE_ENV === 'development') {
+    // Disable views cache
+    app.set('view cache', false);
+  } else if (process.env.NODE_ENV === 'production') {
+    app.locals.cache = 'memory';
+  }
 
   // Should be placed before express.static
   // To ensure that all assets and data are compressed (utilize bandwidth)
@@ -41,7 +46,7 @@ module.exports = function(config, app, passport, db) {
   }
   else{
     app.use(expressLogger({
-      path: config.root + '/log/requests.log'
+      path: config.rootPath + '/log/requests.log'
     }));
   }
 
@@ -50,6 +55,9 @@ module.exports = function(config, app, passport, db) {
 
   // set .html as the default extension
   app.set('view engine', 'html');
+
+  // set view path
+  app.set('views', config.serverPath + '/views');
 
   // The cookieParser should be above session
   app.use(cookieParser());
