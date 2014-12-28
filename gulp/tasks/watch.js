@@ -1,42 +1,32 @@
 'use strict';
 
 var gulp = require('gulp');
+var server = require('gulp-express');
 
 //https://github.com/gulpjs/gulp/issues/217
 module.exports = gulp.task('watch', function() {
-    
-    var devFilesWatcher = gulp.watch(config.paths.src.dev, ['hint']);
-    devFilesWatcher.on('change', function(event) {
-        console.log('File ' + event.path + ' was ' + event.type + ', running tasks dev');
+    server.run({
+        file: 'server.js'
     });
+
+    var devFilesWatcher = gulp.watch(config.paths.src.scripts.concat(config.paths.src.dev,config.paths.src.unit,config.paths.src.e2e), ['hint']);
+    devFilesWatcher.on('change', server.notify);
     
-    var unitWatcher = gulp.watch(config.paths.src.unit, ['hint','unit']);
-    unitWatcher.on('change', function(event) {
-        console.log('File ' + event.path + ' was ' + event.type + ', running tasks unit');
-    });
+    var unitWatcher = gulp.watch(config.paths.src.unit, ['unit']);
+    unitWatcher.on('change', server.notify);
     
     var indexWatcher = gulp.watch(config.paths.src.index, ['index']);
-    indexWatcher.on('change', function(event) {
-        console.log('File ' + event.path + ' was ' + event.type + ', running tasks index');
-    });
+    indexWatcher.on('change',server.notify);
     
-    var e2eWatcher = gulp.watch(config.paths.src.e2e, ['hint','e2e']);
-    e2eWatcher.on('change', function(event) {
-        console.log('File ' + event.path + ' was ' + event.type + ', running tasks e2e');
-    });
+    var e2eWatcher = gulp.watch(config.paths.src.e2e, ['e2e']);
+    e2eWatcher.on('change', server.notify);
     
     var templatesWatcher = gulp.watch(config.paths.src.templates, ['templates', 'scripts']);
-    templatesWatcher.on('change', function(event) {
-        console.log('File ' + event.path + ' was ' + event.type + ', running tasks templates');
-    });
+    templatesWatcher.on('change',server.notify);
     
-    var scriptsWatcher = gulp.watch(config.paths.src.scripts, ['hint', 'scripts']);
-    scriptsWatcher.on('change', function(event) {
-        console.log('File ' + event.path + ' was ' + event.type + ', running tasks scripts');
-    });
+    var scriptsWatcher = gulp.watch(config.paths.src.scripts, [ 'scripts']);
+    scriptsWatcher.on('change', server.notify);
     
     var stylesWatcher = gulp.watch(config.paths.src.styles, ['styles']);
-    stylesWatcher.on('change', function(event) {
-        console.log('File ' + event.path + ' was ' + event.type + ', running tasks styles');
-    });
+    stylesWatcher.on('change', server.notify);
 });

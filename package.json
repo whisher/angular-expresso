@@ -20,6 +20,7 @@
     "body-parser": "^1.10.0",
     "compression": "^1.2.2",
     "connect-flash": "^0.1.1",
+    "connect-livereload": "^0.5.2",
     "connect-mongo": "^0.4.2",
     "consolidate": "^0.10.0",
     "cookie-parser": "^1.3.3",
@@ -29,17 +30,20 @@
     "express-session": "^1.9.3",
     "express-validator": "^2.7.0",
     "formidable": "^1.0.16",
+    "gulp-livereload": "^3.0.2",
     "lodash": "^2.4.1",
     "method-override": "^2.3.0",
     "mongoose": "^3.8.21",
     "morgan": "^1.5.0",
     "passport": "^0.2.1",
     "passport-local": "^1.0.0",
-    "socket.io": "^1.2.1"
+    "socket.io": "^1.2.1",
+    "tiny-lr": "^0.1.4"
   },
   "devDependencies": {
     "bower": "^1.3.12",
     "browser-sync": "^1.6.5",
+    "connect-livereload": "^0.5.2",
     "cordova": "^4.1.2",
     "del": "^0.1.3",
     "express": "^4.10.2",
@@ -48,6 +52,7 @@
     "gulp-autoprefixer": "^1.0.1",
     "gulp-concat": "^2.4.1",
     "gulp-csso": "^0.2.9",
+    "gulp-express": "^0.1.2",
     "gulp-if": "^1.2.5",
     "gulp-jasmine": "^1.0.1",
     "gulp-jshint": "^1.9.0",
@@ -69,6 +74,7 @@
     "karma-spec-reporter": "0.0.13",
     "protractor": "^1.4.0",
     "run-sequence": "^1.0.1",
+    "supertest": "^0.15.0",
     "yargs": "^1.3.2"
   },
   "engines": {

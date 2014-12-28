@@ -7,7 +7,7 @@ angular.element(document).ready(function() {
 
 function config($locationProvider, $urlRouterProvider, $logProvider) {
     $locationProvider.hashPrefix('!');
-    $urlRouterProvider.otherwise('/user/signup');  
+    $urlRouterProvider.otherwise('/');  
     $logProvider.debugEnabled(true);
 }
 

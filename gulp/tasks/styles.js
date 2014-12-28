@@ -11,7 +11,7 @@ var sass = require('gulp-ruby-sass');
 
 function handleError(err) {
   console.log(err.toString());
-  this.emit('end');
+  this.emit('end'); 
 }
 
 var sassOptions = { // The options to be passed to sass()

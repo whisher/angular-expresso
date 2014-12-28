@@ -12,7 +12,7 @@ module.exports = gulp.task('scripts', function () {
 return gulp.src(config.paths.src.scripts)
     .pipe(concat(config.filenames.scripts))
     .pipe(ngAnnotate())
-    .pipe(gulpif(release,uglify()))
+    .pipe(gulpif(release,uglify())) 
     .pipe(gulpif(release,gulp.dest(config.paths.dest.phonegap.scripts),gulp.dest(config.paths.dest.build.scripts)))
     .pipe(reload({stream:true}));
 });

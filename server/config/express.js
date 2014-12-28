@@ -18,7 +18,6 @@ var compression = require('compression'),
 
 
 module.exports = function(config, app, passport, db) {
-
   app.set('showStackError', true);
 
   // Prettify HTML

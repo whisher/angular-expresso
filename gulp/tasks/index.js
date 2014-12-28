@@ -25,6 +25,6 @@ module.exports = gulp.task('index', function () {
         )
         .pipe(gulpif(release,
           gulp.dest(config.paths.dest.phonegap.index),
-          gulp.dest(config.paths.dest.build.index)))
-        .pipe(gulpif(!release,reload({stream:true})));
+          gulp.dest(config.paths.dest.build.index)));
+        //.pipe(gulpif(!release,reload({stream:true})));
 });

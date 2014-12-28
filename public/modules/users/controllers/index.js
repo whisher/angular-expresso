@@ -1,14 +1,14 @@
 (function() {
 'use strict';
 
-function UserController() {
+function UserController() { 
 	var user = this;
-    	user.welcome = 'Welcomesyewffcc!';
+    	user.welcome = 'Welcomesyewffccff !';
 }
 function UserSigninController($http) {
 	var user = this;
     	user.signin = function() {
-    		ser.errors = [];
+    		user.errors = [];
 		$http.post('/api/auth/signin', user)
 			.then(function(response) {
 					console.log(response);
@@ -22,8 +22,9 @@ function UserSigninController($http) {
 }
 function UserSignupController($http) {
 	var user = this;
+	user.data = {};
     	user.signup = function() {
-	    	user.errors = [];
+	    	delete user.errors;
 		$http.post('/api/auth/signup', user)
 			.then(function(response) {
 				console.log(response);

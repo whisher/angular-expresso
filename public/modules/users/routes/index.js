@@ -24,7 +24,7 @@ function config($stateProvider,$httpProvider) {
                 controllerAs: 'user',
                 controller:'UserSignupController'
              });
-       $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+       
 }
 
 angular.module('users.routes', [])

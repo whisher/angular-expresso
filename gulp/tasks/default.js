@@ -4,7 +4,7 @@ var gulp = require('gulp');
 var runSequence = require('run-sequence');
 
 module.exports = gulp.task('default', function() {
-    if (release) {
+    if (release) { 
         runSequence(
                 'clean',
                 ['index', 'styles',  'fonts', 'templates', 'hint'],
@@ -15,10 +15,9 @@ module.exports = gulp.task('default', function() {
         runSequence(
                 'clean',
                 ['index', 'styles', 'fonts', 'templates', 'hint'],
-                'vendor','scripts',
-                ['watch', 'serve']
-              
-                );
+                ['vendor','scripts'],
+                'watch'
+       );
     }
 }
 );
