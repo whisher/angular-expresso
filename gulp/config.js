@@ -6,7 +6,7 @@
 global.SRC_FOLDER = 'public';
 global.SCRIPTS_FOLDER = SRC_FOLDER + '/modules';
 global.BUILD_FOLDER = 'build';
-global.RELEASE_FOLDER = 'phonegap/www';
+global.RELEASE_FOLDER = 'dist';
 global.TMP_FOLDER = 'tmp';
 
 global.config = {

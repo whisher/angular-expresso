@@ -1,9 +1,8 @@
 # --------------------
 # Node Files
 # --------------------
-.nodemonignore
-npm-debug.log
 node_modules/
+npm-debug.log
 
 # --------------------
 # SASS Files
@@ -21,7 +20,7 @@ bower_components
 # --------------------
 build/
 tmp/
-phonegap/
+dist/
 src/tests/unit-result/
 log/
 
