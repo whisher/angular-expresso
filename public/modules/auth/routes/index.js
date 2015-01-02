@@ -13,7 +13,6 @@ function config($stateProvider,$httpProvider) {
             }
 
     });
-    //Http Intercpetor to check auth failures for xhr requests
     $httpProvider.interceptors.push('HttpInterceptor');
 }
 

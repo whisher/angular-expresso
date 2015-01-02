@@ -15,8 +15,7 @@ function run($log) {
     $log.debug('App is running!');
 }
 
-angular.module('app', 
-	['core','auth','users','articles'])
+angular.module('app', ['core','auth','users','articles'])
 	    .config(config)
 	    .run(run);
  })();
