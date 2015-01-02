@@ -2,11 +2,13 @@
 
 var path = require('path'),
   rootPath = process.cwd(),
-  serverPath = rootPath + '/server'; 
+  serverPath = rootPath + '/server',
+  staticPath = rootPath + '/build'; 
 
 module.exports = {
   rootPath: rootPath,
   serverPath: serverPath,
+  staticPath: staticPath,
   http: {
     port: process.env.PORT || 3000
   },

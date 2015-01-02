@@ -1,0 +1,24 @@
+<section class="row">
+    <h3 class="col-md-12"><span class="fa fa-sign-in"></span> Login</h3>
+    <div class="col-md-offset-4 col-md-4">
+        <form name="form" data-ng-submit="user.signin()" class="signin form-horizontal">
+            <fieldset>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" data-ng-model="user.email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" data-ng-model="user.password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Sign in</button>&nbsp; or&nbsp;
+                    <a data-ui-sref="session.forgot">Forgot your password?</a>&nbsp; or&nbsp;
+                    <a data-ui-sref="session.signup">Sign up</a>
+                </div>
+
+                <div show-errors errors="user.errors"></div>
+            </fieldset>
+        </form>
+    </div>
+</section>

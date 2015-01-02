@@ -8,11 +8,11 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <meta name="keywords" content="">
         <meta name="description" content="">
-        <title>Angular seed</title>
+        <title>Angular express</title>
         <!--styles-->
     </head>
-    <body>
-        <ui-view></ui-view>
+    <body class="overlay" ng-cloak>
+        <div ui-view></div>
         <script src="/socket.io/socket.io.js"></script>
         <script>
             var socket = io();

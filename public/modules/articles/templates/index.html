@@ -1,0 +1,16 @@
+<section>
+<div class="row">
+    <div class="well add-new-box">
+        <a data-ui-sref="post_create" class="btn btn-primary">New</a>
+    </div>
+</div>
+<div class="row">
+  <ul class="articles">
+    <li data-ng-repeat="article in articles.data">
+      <span>{{article.created | date:'medium'}}</span> 
+      <div>{{article.title}}</div>
+      <div>{{article.content}}</div>
+    </li>
+  </ul>
+ </div> 
+</section>

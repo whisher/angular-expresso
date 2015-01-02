@@ -21,14 +21,15 @@ global.config = {
             ],
             vendor:[
                'bower_components/angular/angular.js',
-               'bower_components/angular-ui-router/release/angular-ui-router.js'
+               'bower_components/angular-ui-router/release/angular-ui-router.js',
+                'bower_components/angular-bootstrap/ui-bootstrap-tpls.js'
             ],
             fonts: [
                 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/**',
                 'bower_components/fontawesome/fonts/**'
             ],
             images: SRC_FOLDER + '/images/**/*',
-            templates: SRC_FOLDER + '/templates/**/*.html',
+            templates: SRC_FOLDER + '/modules/**/templates/*.html',
             templatesCompiled: TMP_FOLDER + '/templates',
             dev: [
                 'karma.conf.js',

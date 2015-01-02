@@ -5,7 +5,7 @@ function config($stateProvider,$httpProvider) {
     $stateProvider      
        .state('session', {
                 abstract: true,
-                templateUrl: 'templates/users/session.html',
+                templateUrl: 'users/templates/session.html',
                 /*resolve: {
                     issessionedin: function(Sessions){
                         return Sessions.isSessionedIn();
@@ -14,13 +14,13 @@ function config($stateProvider,$httpProvider) {
             })
             .state('session.signin', {
                 url: '/user/signin',
-                templateUrl: 'templates/users/signin.html',
+                templateUrl: 'users/templates/signin.html',
                 controllerAs: 'user',
                 controller:'UserSigninController'
              })
             .state('session.signup', {
                 url: '/user/signup',
-                templateUrl: 'templates/users/signup.html',
+                templateUrl: 'users/templates/signup.html',
                 controllerAs: 'user',
                 controller:'UserSignupController'
              });

@@ -1,15 +1,47 @@
 body {
-  text-align: center;
   color: #222;
+  text-align: center;
+  
 }
 .welcome {
   @extend .jumbotron; 
-  background: #eee;
+  h1,h2,h3{
+  	color:#fff;
+  }
 }
 
-h1{
-	color:red;
+[ng-cloak] {display: none;}
+[ng-cloak].overlay {display: block !important;
+	bottom: 0;
+    	background-color: $primaryTextColor;
+    	left: 0;
+    	position: fixed;
+    	right: 0;
+    	top: 0;
+    	z-index:9999;
+    	opacity: 0.8;
+    	filter: alpha(opacity=80);
+    	div{
+    		display:none;
+    	}
+	&:before {
+	   	@extend .fa; 
+	   	@extend .fa-circle-o-notch; 
+	   	@extend .fa-spin; 
+            color:$lightPrimaryColor;
+	   	font-size: 4em;
+            position: absolute;
+		top: 50%;
+   	}
 }
-a, a:visited {
-  text-decoration: none;
-}
+
+
+
+
+
+
+
+
+
+
+

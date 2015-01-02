@@ -41,6 +41,7 @@ exports.signin = function(passport) {
  * Signup
  */
 exports.signup = function(req, res,next) {
+	console.log(req.isAuthenticated());
 	var user = new User(req.body);
 	req.checkBody('email', 'You must enter a valid email address').isEmail();
   	req.checkBody('password', 'Password must be between 8-20 characters long').len(8, 20);
@@ -50,7 +51,7 @@ exports.signup = function(req, res,next) {
 	}
 	user.save(function(err) {
 		if (err) {console.log(err);
-			return res.status(500).send(utils.get500ErrorMessage(err));
+			return res.status(500).json(utils.get500ErrorMessage(err));
 		} 
 		// Remove sensitive data before login
 		user.password = undefined;

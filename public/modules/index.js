@@ -15,11 +15,11 @@ function run($log) {
     $log.debug('App is running!');
 }
 
-angular.module('app', ['home','users'])
-    .config(config)
-    .run(run);
-    
-})();
+angular.module('app', 
+	['core','auth','users','articles'])
+	    .config(config)
+	    .run(run);
+ })();
 
 
 

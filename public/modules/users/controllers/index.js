@@ -3,36 +3,32 @@
 
 function UserController() { 
 	var user = this;
-    	user.welcome = 'Welcomesyewffccff !';
+    	
 }
-function UserSigninController($http) {
-	var user = this;
-    	user.signin = function() {
-    		user.errors = [];
-		$http.post('/api/auth/signin', user)
-			.then(function(response) {
-					console.log(response);
-					
-			})
-			.catch(function(response) {
-				console.log(response.data);
-				user.errors = response.data;
-			});
-	};
-}
-function UserSignupController($http) {
+function UserSigninController(Users) {
 	var user = this;
 	user.data = {};
+    	user.signin = function() {
+    		Users.signin(user.data).then(function(response) {
+			console.log(response);
+		})
+		.catch(function(response) {
+			user.errors = response.data;
+		});
+	};
+}
+function UserSignupController(Users) {
+	var user = this;
+	user.data = {};
+	user.errors  = [];
     	user.signup = function() {
-	    	delete user.errors;
-		$http.post('/api/auth/signup', user)
-			.then(function(response) {
-				console.log(response);
-			})
-			.catch(function(response) {
-				console.log(response);
-				user.errors = response.data;
-			});
+	    	Users.signup(user.data).then(function(response) {
+			console.log(response);
+		})
+		.catch(function(response) {
+			console.log(response);
+			user.errors = response.data;
+		});
 	};
 }
 angular.module('users.controllers', [])

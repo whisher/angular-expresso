@@ -22,11 +22,12 @@ module.exports = gulp.task('watch', function() {
     e2eWatcher.on('change', server.notify);
     
     var templatesWatcher = gulp.watch(config.paths.src.templates, ['templates', 'scripts']);
-    templatesWatcher.on('change',server.notify);
-    
     var scriptsWatcher = gulp.watch(config.paths.src.scripts, [ 'scripts']);
-    scriptsWatcher.on('change', server.notify);
-    
+    var scriptsBundle = config.paths.dest.build.scripts+'/'+config.filenames.scripts;
+    gulp.watch(scriptsBundle, server.notify);
+  
     var stylesWatcher = gulp.watch(config.paths.src.styles, ['styles']);
-    stylesWatcher.on('change', server.notify);
+    var cssBundle = config.paths.dest.build.styles+'/'+config.filenames.styles;
+    gulp.watch(cssBundle, server.notify);
+
 });

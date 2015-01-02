@@ -1,14 +1,17 @@
 'use strict';
 
+
 /**
  * Module dependencies.
  */
-var config = require('./server/config/config'),
-	http = require('http'),
+var http = require('http'),
 	express = require('express'),
 	app = express(),
 	mongoose = require('mongoose'),
-	passport = require('passport');
+	path = require('path'),
+	passport = require('passport'),
+	config = require('./server/config/config'),
+	auth = require('./server/middlewares/auth');
 
 
 // Bootstrap db connection
@@ -19,17 +22,23 @@ var db = mongoose.connect(config.db, function(err) {
 	}
 });
  
- // Models
-require(config.serverPath+'/models/item');
+// Models
 require(config.serverPath+ '/models/user');
+require(config.serverPath+'/models/article');
+
 
 
 
 require(config.serverPath+'/config/passport')(passport);
 require(config.serverPath+'/config/express')(config,app,passport,db);
-app.use(require('connect-livereload')());
+
+ if (process.env.NODE_ENV === 'development') {
+	app.use(require('connect-livereload')());
+}
 app.set('port', process.env.PORT || 3000);
-app.use(express.static(config.rootPath + '/build'));
+app.use(express.static( path.join(config.rootPath, config.releasePath) ,{
+  etag: false
+}));
 
 /*
 var router = express.Router();
@@ -47,25 +56,13 @@ router.use(function(req, res, next) {
 app.use('/api', router);
 */
 // Routes
-require(config.serverPath+'/routers/core')(app);
-require(config.serverPath+'/routers/item')(app);
-require(config.serverPath+'/routers/user')(app,passport);
+require(config.serverPath+'/routers/auth')(app,passport,auth);
+
+require(config.serverPath+'/routers/articles')(app,auth);
 
 
 
-/*app.use(function(req, res, next){console.error(req.xhr);
-	//console.error(err);
-	res.status(404);
-	res.render('404');
-});
 
-// 500 error handler (middleware)
-app.use(function(err, req, res, next){console.error(req.xhr);
-	console.log(err);
-	res.status(500);
-	res.render('500');
-});	
-*/
 app.use(function(err, req, res, next) {
 	// If the error object doesn't exists
 	if (!err){
