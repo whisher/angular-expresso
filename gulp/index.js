@@ -9,7 +9,7 @@ var fs = require('fs'),
 
 require('./config');
 
-// --phonegap flag when executing a task
+// --release flag for prodution 
 global.release = argv.release;
 
 tasks.forEach(function (task) {

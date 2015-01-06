@@ -11,6 +11,12 @@ var mongoose = require('mongoose'),
 * User schema
 */
 var UserSchema = new Schema({
+	username: {
+		type: String,
+		unique:true,
+		required: true,
+		trim: true
+	},
 	email: {
 		type: String,
 		unique:true,
@@ -35,7 +41,7 @@ var UserSchema = new Schema({
 * Presave hook
 */
 UserSchema.pre('save', function(next) {
-	if (this.password && this.password.length > 6) {
+	if (this.password) {
 		this.password = this.generateHash(this.password);
 	}
 	next();

@@ -3,7 +3,10 @@
 
 function LoginModalController($modalInstance,Auth) {
     var auth = this;
-    auth.login = function () {
+    auth.showSigninFields = true;
+    auth.showSignupFields = false;
+    auth.showForgotFields = false;
+    auth.signin = function () {
         Auth.signin(auth.data)
             .then(function(response) {
                 $modalInstance.close(response.data);

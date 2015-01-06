@@ -1,44 +1,34 @@
 'use strict';
 
-
 /**
  * Module dependencies.
  */
-var http = require('http'),
+var fs = require('fs'),
+	http = require('http'),
 	express = require('express'),
 	app = express(),
-	mongoose = require('mongoose'),
 	path = require('path'),
 	passport = require('passport'),
-	config = require('./server/config/config'),
+	configs = require('./server/config/config'),
 	auth = require('./server/middlewares/auth');
 
-
 // Bootstrap db connection
-var db = mongoose.connect(config.db, function(err) {
-	if (err) {
-		console.error('Could not connect to MongoDB!');
-		console.log(err);
-	}
-});
+var db = require('./server/config/db')(configs);
  
-// Models
-require(config.serverPath+ '/models/user');
-require(config.serverPath+'/models/article');
+// Bootstrap models
+var modelsPath = path.join(configs.serverPath+ '/models');
+fs.readdirSync(modelsPath).forEach(function (file) {
+	require(modelsPath + '/' + file);
+});
 
-
-
-
-require(config.serverPath+'/config/passport')(passport);
-require(config.serverPath+'/config/express')(config,app,passport,db);
+require(configs.serverPath+'/config/passport')(passport);
+require(configs.serverPath+'/config/express')(configs,app,passport,db);
 
  if (process.env.NODE_ENV === 'development') {
 	app.use(require('connect-livereload')());
 }
 app.set('port', process.env.PORT || 3000);
-app.use(express.static( path.join(config.rootPath, config.releasePath) ,{
-  etag: false
-}));
+app.use(express.static( path.join(configs.rootPath, configs.releasePath)));
 
 /*
 var router = express.Router();
@@ -56,9 +46,9 @@ router.use(function(req, res, next) {
 app.use('/api', router);
 */
 // Routes
-require(config.serverPath+'/routers/auth')(app,passport,auth);
+require(configs.serverPath+'/routers/auth')(app,passport,auth);
 
-require(config.serverPath+'/routers/articles')(app,auth);
+require(configs.serverPath+'/routers/articles')(app,auth);
 
 
 

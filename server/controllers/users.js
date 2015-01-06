@@ -40,15 +40,18 @@ exports.signin = function(passport) {
 /**
  * Signup
  */
-exports.signup = function(req, res,next) {
-	console.log(req.isAuthenticated());
-	var user = new User(req.body);
+exports.signup = function(req, res, next) {
+
+	req.checkBody('username', 'username must be between 3-10 characters long').len(3, 10);
 	req.checkBody('email', 'You must enter a valid email address').isEmail();
   	req.checkBody('password', 'Password must be between 8-20 characters long').len(8, 20);
+  	req.checkBody('password_confirmation', 'Passwords do not match').equals(req.body.password);
   	var errors = req.validationErrors();
 	if (errors) {
 	    return res.status(400).json(errors);
 	}
+
+	var user = new User(req.body);
 	user.save(function(err) {
 		if (err) {console.log(err);
 			return res.status(500).json(utils.get500ErrorMessage(err));
@@ -68,7 +71,7 @@ exports.signout = function(req, res) {
 	req.logout();
 	res.redirect('/');
 };
-exports.userExists = function(req, res, next) {
+exports.userEmailExists = function(req, res, next) {
 	User.count({
         		email: req.body.email
     	}, function (err, count) {
@@ -77,7 +80,17 @@ exports.userExists = function(req, res, next) {
         		} 
            		res.status(400).json([{'param':'email','msg':'The email <'+req.body.email +'> is already registered'}]);
 	});
-}
+};
+exports.userNameExists = function(req, res, next) {
+	User.count({
+        		username: req.body.username
+    	}, function (err, count) {
+        		if (count === 0) {
+            		return	next();
+        		} 
+           		res.status(400).json([{'param':'username','msg':'The username <'+req.body.username +'> is already registered'}]);
+	});
+};
 exports.me = function(req, res) {
-res.json({});
-}
+	res.json({});
+};

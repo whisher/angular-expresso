@@ -1,24 +1,25 @@
-<section class="row">
-    <h3 class="col-md-12"><span class="fa fa-sign-in"></span> Sign up</h3>
-    <div class="col-md-offset-4 col-md-4">
-        <form name="form" data-ng-submit="user.signup()" class="signin form-horizontal">
-            <fieldset>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" class="form-control" data-ng-model="user.data.email" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" class="form-control" data-ng-model="user.data.password" placeholder="Password">
-                </div>
-
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Sign up</button>&nbsp; or&nbsp;
-                    <a data-ui-sref="session.signin">Sign in</a>
-                </div>
-                
-                <div show-errors errors="user.errors"></div>
-            </fieldset>
-        </form>
-    </div>
-</section>
+<div class="col-md-6 col-md-offset-3">
+    <form name="form" class="form-horizontal form-user form-signin" data-ng-submit="user.save(form.$valid)" novalidate>
+        <h3><span class="fa fa-sign-in"></span> Signup</h3>
+        <div class="form-group">
+            <input type="text" tabindex="1" name="username" placeholder="Username" class="form-control" required="required" data-ng-minlength="3" data-ng-maxlength="10" data-ng-model="user.data.username" data-user-feedback />
+        </div>
+        <div class="form-group">
+            <input type="email" tabindex="2"  name="email" placeholder="Email" class="form-control" required="required" data-ng-model="user.data.email" data-user-feedback />
+        </div>
+        <div class="form-group">
+            <input type="password" tabindex="3" name="password" placeholder="Password" class="form-control" required="required" data-ng-minlength="8" data-ng-maxlength="20" data-ng-model="user.data.password" data-user-feedback />
+        </div>
+        <div class="form-group">
+            <input type="password"  tabindex="4" name="password_confirmation" placeholder="Retype password"  class="form-control" required="required" data-ng-minlength="8" data-ng-maxlength="20"  password-equals="user.data.password" data-ng-model="user.data.password_confirmation" data-user-feedback />
+        </div>
+        <div class="form-group form-no-required">
+            <div class="pull-right">
+                <a data-ui-sref="session.forgot">Forgot your password?</a>&nbsp; or&nbsp;
+                <a data-ui-sref="session.signin">Sign in</a>
+                <button tabindex="5" type="submit" class="btn btn-primary">Signup</button>
+            </div>
+        </div>
+        <div show-errors errors="user.errors"></div>
+    </form>
+</div>

@@ -13,3 +13,4 @@ function showVersion(VERSION) {
 angular.module('core.directives', [])
     .directive('showVersion', showVersion);
 })();
+

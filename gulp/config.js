@@ -9,7 +9,7 @@ global.BUILD_FOLDER = 'build';
 global.RELEASE_FOLDER = 'dist';
 global.TMP_FOLDER = 'tmp';
 
-global.config = {
+var config = {
     paths: {
         src: {
             index: SRC_FOLDER + '/index.html',
@@ -20,9 +20,10 @@ global.config = {
                 SRC_FOLDER + '/modules/**/*.js'
             ],
             vendor:[
-               'bower_components/angular/angular.js',
-               'bower_components/angular-ui-router/release/angular-ui-router.js',
-                'bower_components/angular-bootstrap/ui-bootstrap-tpls.js'
+                'bower_components/angular/angular.js',
+                'bower_components/angular-ui-router/release/angular-ui-router.js',
+                'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+                'bower_components/angular-animate/angular-animate.js'
             ],
             fonts: [
                 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/**',
@@ -32,12 +33,14 @@ global.config = {
             templates: SRC_FOLDER + '/modules/**/templates/*.html',
             templatesCompiled: TMP_FOLDER + '/templates',
             dev: [
-                'karma.conf.js',
-                'protractor.conf.js',
-                'gulp/**/*.js'
+                './karma.conf.js',
+                './protractor.conf.js',
+                './gulpfile.js',
+                './gulp/**/*.js'
             ],
             unit : [SRC_FOLDER + '/tests/unit/**/*.js'],
-            e2e : [SRC_FOLDER + '/tests/e2e/**/*.js']
+            e2e : [SRC_FOLDER + '/tests/e2e/**/*.js'],
+            server: ['./server.js', './server/**/*.js']
         },
         dest: {
             build: {
@@ -63,3 +66,11 @@ global.config = {
         scripts: 'scripts.js'
     }
 };
+
+config.paths.src.jsGlobs = config.paths.src.scripts.concat(
+    config.paths.src.dev,
+    config.paths.src.unit,
+    config.paths.src.e2e,
+    config.paths.src.server);
+
+global.config = config;

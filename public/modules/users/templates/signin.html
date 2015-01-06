@@ -1,24 +1,20 @@
-<section class="row">
-    <h3 class="col-md-12"><span class="fa fa-sign-in"></span> Login</h3>
-    <div class="col-md-offset-4 col-md-4">
-        <form name="form" data-ng-submit="user.signin()" class="signin form-horizontal">
-            <fieldset>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" class="form-control" data-ng-model="user.email" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" class="form-control" data-ng-model="user.password" placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Sign in</button>&nbsp; or&nbsp;
-                    <a data-ui-sref="session.forgot">Forgot your password?</a>&nbsp; or&nbsp;
-                    <a data-ui-sref="session.signup">Sign up</a>
-                </div>
-
-                <div show-errors errors="user.errors"></div>
-            </fieldset>
-        </form>
-    </div>
-</section>
+<div class="col-md-6 col-md-offset-3">
+    <form name="form" class="form-horizontal form-user form-signin" data-ng-submit="user.signin()"novalidate>
+        <h3><span class="fa fa-sign-in"></span> Signin</h3>
+        
+        <div class="form-group">
+            <input tabindex="1" type="email" name="email" placeholder="Email" class="form-control" required="required" data-ng-model="user.data.email" data-user-feedback />
+        </div>
+        
+        <div class="form-group">
+            <input tabindex="2" type="password" name="password" placeholder="Password" class="form-control" required="required" data-ng-minlength="5" data-ng-maxlength="15" data-ng-model="user.data.password" data-user-feedback />
+        </div>
+        
+        <div class="form-group form-no-required">
+            <div class="pull-right">
+                <button tabindex="6" type="submit" class="btn btn-primary">Signin</button>
+            </div>
+        </div>
+        <div show-errors errors="user.errors"></div>
+    </form>
+</div>

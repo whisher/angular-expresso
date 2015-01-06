@@ -1,22 +1,25 @@
 <div class="modal-header">
-            <h3 class="modal-title"><span class="fa fa-sign-in"></span> Login</h3>
+            <h3 class="modal-title"><span class="fa fa-sign-in"></span> Signin</h3>
 </div>
-<div class="modal-body">
-    <form name="form" class="signin form-horizontal" novalidate>
-        <div class="form-group">
-            <input type="email" id="email" name="email" class="form-control" data-ng-model="auth.data.email" placeholder="Email">
-        </div>
-        <div class="form-group">
-            <input type="password" id="password" name="password" class="form-control" data-ng-model="auth.data.password" placeholder="Password">
-        </div>
-        <div class="form-group">
-            <button class="btn btn-warning" data-ng-click="auth.cancel()">Cancel</button>
-            <button type="submit" class="btn btn-primary" data-ng-click="auth.login()">Sign in</button>
-        </div>
-        <div show-errors errors="auth.errors"></div>
-    </form>  
+<div class="modal-body clearfix">
+    <div class="col-md-12">
+        <form name="form" class="form-auth form-horizontal" novalidate>
+            <div class="form-group">
+                <input type="email" id="email" name="email" class="form-control" data-ng-model="auth.data.email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" class="form-control" data-ng-model="auth.data.password" placeholder="Password">
+            </div>
+            <div class="form-group pull-right">
+                <button class="btn btn-warning" data-ng-click="auth.cancel()">Cancel</button>
+                <button type="submit" class="btn btn-primary" data-ng-click="auth.signin()">Sign in</button>
+            </div>
+            <div show-errors errors="auth.errors"></div>
+        </form>  
+    </div>
 </div>
 <div class="modal-footer">
-           angular express
+         <a data-ui-sref="session.forgot" data-ng-click="auth.cancel()">Forgot your password?</a>&nbsp; or&nbsp;
+        <a data-ui-sref="session.signup" data-ng-click="auth.cancel()">Sign up</a>
 </div>
 

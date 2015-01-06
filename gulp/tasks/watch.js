@@ -9,7 +9,7 @@ module.exports = gulp.task('watch', function() {
         file: 'server.js'
     });
 
-    var devFilesWatcher = gulp.watch(config.paths.src.scripts.concat(config.paths.src.dev,config.paths.src.unit,config.paths.src.e2e), ['hint']);
+    var devFilesWatcher = gulp.watch(config.paths.src.jsGlobs, ['hint']);
     devFilesWatcher.on('change', server.notify);
     
     var unitWatcher = gulp.watch(config.paths.src.unit, ['unit']);

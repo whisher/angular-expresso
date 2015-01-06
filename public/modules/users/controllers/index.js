@@ -17,13 +17,13 @@ function UserSigninController(Users) {
 		});
 	};
 }
-function UserSignupController(Users) {
+function UserSignupController($state, Users) {
 	var user = this;
 	user.data = {};
 	user.errors  = [];
-    	user.signup = function() {
-	    	Users.signup(user.data).then(function(response) {
-			console.log(response);
+	user.save = function(isValid) {
+		Users.signup(user.data).then(function(response) {
+			$state.go('home');
 		})
 		.catch(function(response) {
 			console.log(response);
