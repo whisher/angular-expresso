@@ -9,9 +9,22 @@ $secondaryTextColor: #727272 !default;
 $dividerColor:       #B6B6B6 !default;
 
 // bootstrap
-$jumbotron-bg: $primaryColor !default;
-$modal-backdrop-bg: red !default;
-$modal-backdrop-opacity : 0.5 !default;
+$body-bg:              #FAFAFA !default;
+$text-color:            $textPrimaryColor !default;
+$navbar-default-bg:                $darkPrimaryColor !default;
+$navbar-default-border:            darken($navbar-default-bg, 6.5%) !default;
+
+// Navbar links
+$navbar-default-link-color:                #fff !default;
+$navbar-default-link-hover-color:          $lightPrimaryColor !default;
+$navbar-default-link-hover-bg:             transparent !default;
+$navbar-default-link-active-color:         $lightPrimaryColor !default;
+$navbar-default-link-active-bg:            darken($navbar-default-bg, 6.5%) !default;
+$navbar-default-link-disabled-color:       #ccc !default;
+$navbar-default-link-disabled-bg:          transparent !default;
+
+$jumbotron-bg: $lightPrimaryColor !default;
+
 $icon-font-path: "../fonts/" !default;
 $fa-font-path:   "../fonts" !default;  
 

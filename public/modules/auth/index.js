@@ -7,9 +7,14 @@ function run($rootScope,loginModal,HAS_MODAL_LOGIN) {
           			loginModal.open();
         		}
       	});
+	
 }
 
-angular.module('auth',['auth.services','auth.controllers','auth.routes'])
+angular.module('auth',
+	['ngStorage',
+	'auth.services', 
+	'auth.controllers', 
+	'auth.routes'])
     .run(run);
             
 })();

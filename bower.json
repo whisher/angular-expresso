@@ -8,7 +8,8 @@
     "fontawesome": "~4.1.0",
     "angular-bootstrap": "~0.12.0",
     "angular-animate": "~1.3.8",
-    "animate-sass": "git://github.com/tgdev/animate-sass.git#master"
+    "animate-sass": "git://github.com/tgdev/animate-sass.git#master",
+    "ngstorage": "~0.3.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.3.2"

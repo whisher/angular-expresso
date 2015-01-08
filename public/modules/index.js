@@ -11,7 +11,10 @@ function config($locationProvider, $urlRouterProvider, $logProvider, DEBUG) {
     $logProvider.debugEnabled(DEBUG);
 }
 
-function run($log) {
+function run($log, $rootScope, UserStorage) {
+    $rootScope.$log = $log;
+    $rootScope.global = {};
+    $rootScope.global.user = UserStorage.get();
     $log.debug('App is running!');
 }
 

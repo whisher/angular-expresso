@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
 /**
  * Try to signin  an user
  */
-exports.signin = function(passport) {
+exports.login = function(passport) {
 	return function(req, res,next) {
 		req.checkBody('email', 'You must enter a valid email address').isEmail();
   		req.checkBody('password', 'Password must be between 8-20 characters long').len(8, 20);
@@ -18,6 +18,13 @@ exports.signin = function(passport) {
 		if (errors) {
 	    		return res.status(400).json(errors);
 		}
+		if (req.body.remember) {
+          			req.session.cookie.maxAge = 1000 * 60 * 3;
+        		}
+        		else {
+          			req.session.cookie.expires = false;
+        		}
+		console.log(req.body);
         		passport.authenticate('local', function(err, user, info) {
             		if (err) {
                 			return res.status(500).json(utils.get500ErrorMessage(err));

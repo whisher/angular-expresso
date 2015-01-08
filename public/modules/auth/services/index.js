@@ -6,7 +6,7 @@ function Auth($http) {
     isLoggedIn: function() {
         return $http.get('/api/auth/isloggedin');
     },
-    signin: function(data) {
+    login: function(data) {
         return $http.post('/api/auth/signin', data);
     }
   };

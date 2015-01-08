@@ -3,13 +3,17 @@ body {
   text-align: center;
   
 }
+.logo{
+  @extend .fa; 
+  @extend .fa-bolt; 
+  color: #FF5722;
+}
 .welcome {
   @extend .jumbotron; 
   h1,h2,h3{
-  	color:#fff;
+  	color:$secondaryTextColor;
   }
 }
-
 [ng-cloak] {display: none;}
 [ng-cloak].overlay {display: block !important;
 	bottom: 0;

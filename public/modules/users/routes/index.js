@@ -12,11 +12,11 @@ function config($stateProvider,$httpProvider) {
                     } 
                 }*/
             })
-            .state('session.signin', {
-                url: '/user/signin',
-                templateUrl: 'users/templates/signin.html',
+            .state('session.login', {
+                url: '/user/login',
+                templateUrl: 'users/templates/login.html',
                 controllerAs: 'user',
-                controller:'UserSigninController'
+                controller:'UserLoginController'
              })
             .state('session.signup', {
                 url: '/user/signup',
