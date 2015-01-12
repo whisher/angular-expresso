@@ -5,13 +5,14 @@ function UserController() {
 	var user = this;
     	
 }
-function UserLoginController($state, Users, UserStorage) {
+function UserLoginController($rootScope,$state, Users, UserStorage) {
 	var user = this;
 	user.data = {};
     	user.save = function() {
     		Users.login(user.data).then(function(response) {
 			console.log(response.data);
 			UserStorage.set(response.data);
+			$rootScope.$emit('isAuthenticated', response.data);
 			$state.go('home');
 		})
 		.catch(function(response) {

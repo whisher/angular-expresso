@@ -8,16 +8,30 @@ var hasAuthorization = function(req, res, next) {
   next();
 };
 module.exports = function(app,auth) {
-	// Root routing
-	app.route('/api/articles')
-    		.get(articles.all)
-    		.post( articles.create);
 
-  	app.route('/api/articles/:articleId')
-    		.get(auth.isMongoId, articles.show)
-    		.put(auth.isMongoId, auth.requiresLogin, hasAuthorization, articles.update)
-    		.delete(auth.isMongoId, auth.requiresLogin, hasAuthorization, articles.destroy);
+  // Send available options on OPTIONS requests
+  app.options( '/api/articles', function (req, res) {
+    res.send(['GET', 'PUT', 'DELETE', 'OPTIONS']);
+  });
 
-	// Finish with setting up the articleId param
-	app.param('articleId', articles.article);
+  // Root routing
+  app.route('/api/articles')
+    .get(articles.all)
+    .post(articles.create)
+    // 405 Method Not Allowed
+    .all(function (req, res, next) {
+      var err = new Error();
+      err.route = '/api/articles';
+      err.status = 405;
+      next(err);
+    });
+
+  app.route('/api/articles/:articleId')
+    .get(auth.isMongoId, articles.show)
+    .put(auth.isMongoId, auth.requiresLogin, hasAuthorization, articles.update)
+    .delete(auth.isMongoId, auth.requiresLogin, hasAuthorization, articles.destroy);
+
+  // Setting up the articleId param
+  app.param('articleId', articles.article);
+
 };

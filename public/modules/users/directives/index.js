@@ -13,26 +13,7 @@ function showErrors($templateCache) {
   };
 }
 
-function userFeedback() {
-  return {
-    require: 'ngModel',
-    restrict: 'A',
-    link: function(scope, element, attrs, ctrl) {
-      var $parentDiv = element.parent();
-      var currentClass = $parentDiv.attr('class');
-      element.on('blur',function() {
-        $parentDiv.removeClass();
-        $parentDiv.addClass(currentClass);
-        if(ctrl.$valid){
-          $parentDiv.addClass('has-success');
-        }
-        else{
-          $parentDiv.addClass('has-error');
-        }
-      });
-    }
-  };
-}
+
 function passwordEquals() {
   return {
         require : 'ngModel',
@@ -52,7 +33,6 @@ function passwordEquals() {
 }
 angular.module('users.directives', [])
   .directive('showErrors', showErrors)
-  .directive('userFeedback', userFeedback)
   .directive('passwordEquals', passwordEquals);
 })();
 

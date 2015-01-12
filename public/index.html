@@ -12,21 +12,20 @@
         <!--styles-->
     </head>
     <body class="overlay" ng-cloak>
-        <div class="navbar navbar-default navbar-static-top">
+        <div class="navbar navbar-default navbar-static-top" data-ng-controller="NavController as nav">
             <div class="container">
                 <ul class="nav navbar-nav">
                     <a data-ui-sref="home" class="navbar-brand"><i class="logo"></i> Angular Express</a>
                     <li ui-sref-active="active"><a data-ui-sref="home">Home</a></li>
+                    <li ui-sref-active="active"><a data-ui-sref="article add">Articles</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right" data-ng-if="!global.user">
+                <ul class="nav navbar-nav navbar-right" data-ng-if="!nav.isAuthenticated">
                     <li><a data-ui-sref="session.login">Log in</a></li>
                     <li><a data-ui-sref="session.signup">Sign up</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right" data-ng-if="global.user">
-                    <li><i class="fa fa-user"></i> <span ng-bind="global.user.username"></span> <a href="/api/auth/logout">Logout</a></li>
+                <ul class="nav navbar-nav navbar-right" data-ng-if="nav.isAuthenticated">
+                    <li><i class="fa fa-user"></i> <span ng-bind="nav.isAuthenticated.username"></span> <a href="/api/auth/logout" data-ng-click="nav.logout()">Logout</a></li>
                 </ul>
-            </li>
-        </ul>
             </div>
         </div>
         <div ui-view class="view-animation"></div>

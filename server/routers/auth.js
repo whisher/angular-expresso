@@ -6,6 +6,8 @@ module.exports = function(app, passport, auth) {
     app.route('/api/auth/me').get(auth.requiresLogin,users.me);
     app.route('/api/auth/logout').get(users.signout);
     app.route('/api/auth/isloggedin').get(auth.isLoggedIn);
+    // Setting up the userId param
+  app.param('userId', users.user);
 };
 
 

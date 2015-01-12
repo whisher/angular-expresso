@@ -9,6 +9,7 @@ var fs = require('fs'),
 	app = express(),
 	path = require('path'),
 	passport = require('passport'),
+	errorHandler = require('errorhandler'),
 	configs = require('./server/config/config'),
 	auth = require('./server/middlewares/auth');
 
@@ -25,6 +26,7 @@ require(configs.serverPath+'/config/passport')(passport);
 require(configs.serverPath+'/config/express')(configs,app,passport,db);
 
  if (process.env.NODE_ENV === 'development') {
+ 	app.disable('etag');
 	app.use(require('connect-livereload')());
 }
 app.set('port', process.env.PORT || 3000);
@@ -60,7 +62,7 @@ app.use(function(err, req, res, next) {
 	}
 	// Log it
 	console.error(err.stack);
-
+	// TODO catch 405 status 
 	// Error page
 	res.status(500).render('500', {
 		error: err.stack
@@ -74,6 +76,10 @@ app.use(function(req, res) {
 		error: 'Not Found'
 	});
 });
+
+if (process.env.NODE_ENV === 'development') {
+	app.use(errorHandler());
+}
 var server = http.createServer(app);
 var io = require('socket.io')(server);
 

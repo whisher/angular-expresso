@@ -96,4 +96,8 @@ module.exports = function(config, app, passport, db) {
 
   // Connect flash for flash messages
   app.use(flash());
+
+  // for Security
+  app.disable('x-powered-by');
+
 };
