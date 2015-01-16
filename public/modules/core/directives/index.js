@@ -35,8 +35,20 @@ function userFeedback() {
     		}
   	};
 }
+function showErrors($templateCache) {
+  return {
+    restrict: 'AE',
+    scope:{
+      errors: '='
+    },
+    template: $templateCache.get('core/templates/show-errors.html'),
+    link: function(scope, elm, attrs) {
+    }
+  };
+}
 angular.module('core.directives', [])
     .directive('showVersion', showVersion)
-    .directive('userFeedback', userFeedback);
+    .directive('userFeedback', userFeedback)
+    .directive('showErrors', showErrors);
 })();
 

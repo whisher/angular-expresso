@@ -3,9 +3,8 @@
 
 function UserController() { 
 	var user = this;
-    	
 }
-function UserLoginController($rootScope,$state, Users, UserStorage) {
+function UserSigninController($rootScope, $state, Users, UserStorage) {
 	var user = this;
 	user.data = {};
     	user.save = function() {
@@ -21,13 +20,15 @@ function UserLoginController($rootScope,$state, Users, UserStorage) {
 		});
 	};
 }
-function UserSignupController($state, Users) {
+function UserRegisterController($state, Users) {
 	var user = this;
 	user.data = {};
 	user.errors  = [];
 	user.save = function(isValid) {
 		Users.signup(user.data).then(function(response) {
 			console.log(response);
+			UserStorage.set(response.data);
+			$rootScope.$emit('isAuthenticated', response.data);
 			$state.go('home');
 		})
 		.catch(function(response) {
@@ -38,6 +39,6 @@ function UserSignupController($state, Users) {
 }
 angular.module('users.controllers', [])
     .controller('UserController', UserController)
-    .controller('UserLoginController', UserLoginController)
-    .controller('UserSignupController', UserSignupController);
+    .controller('UserSigninController', UserSigninController)
+    .controller('UserRegisterController', UserRegisterController);
 })();

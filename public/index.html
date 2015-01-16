@@ -17,14 +17,23 @@
                 <ul class="nav navbar-nav">
                     <a data-ui-sref="home" class="navbar-brand"><i class="logo"></i> Angular Express</a>
                     <li ui-sref-active="active"><a data-ui-sref="home">Home</a></li>
-                    <li ui-sref-active="active"><a data-ui-sref="article add">Articles</a></li>
+                    <li ui-sref-active="active"><a data-ui-sref="auth.articles">Articles</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right" data-ng-if="!nav.isAuthenticated">
+                <ul class="nav navbar-nav navbar-right" data-ng-if="!isAuthenticated">
                     <li><a data-ui-sref="session.login">Log in</a></li>
                     <li><a data-ui-sref="session.signup">Sign up</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right" data-ng-if="nav.isAuthenticated">
-                    <li><i class="fa fa-user"></i> <span ng-bind="nav.isAuthenticated.username"></span> <a href="/api/auth/logout" data-ng-click="nav.logout()">Logout</a></li>
+                <ul class="nav navbar-nav navbar-right" data-ng-if="isAuthenticated">
+                    <li>
+                    <div class="btn-group" dropdown is-open="nav.isopen">
+                        <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+                            <i class="fa fa-user"></i> <span ng-bind="isAuthenticated.username"></span><span class="caret"></span>
+                        </button>
+                         <ul class="dropdown-menu" role="menu">
+                            <li><a href="/api/auth/logout" data-ng-click="logout()">Logout</a></li>
+                         </ul>
+                     </div>
+                     </li>
                 </ul>
             </div>
         </div>

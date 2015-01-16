@@ -24,10 +24,10 @@ module.exports = function(config, app, passport, db) {
   app.locals.pretty = true;
 
   // Environment dependent middleware
-  if (process.env.NODE_ENV === 'development') {
+  if (app.get('env') === 'development') {
     // Disable views cache
     app.set('view cache', false);
-  } else if (process.env.NODE_ENV === 'production') {
+  } else if (app.get('env') === 'production') {
     app.locals.cache = 'memory';
   }
 
@@ -40,7 +40,7 @@ module.exports = function(config, app, passport, db) {
   }));
 
   // Only use logger for development environment
-  if (process.env.NODE_ENV === 'development') {
+  if (app.get('env') === 'development') {
     app.use(morgan('dev'));
   }
   else{

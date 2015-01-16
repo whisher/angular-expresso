@@ -3,7 +3,7 @@
 
 function config($stateProvider) {
     $stateProvider      
-        .state('articles', {
+        .state('auth.articles', {
             url: '/articles',
             templateUrl: 'articles/templates/index.html',
             controller:'ArticlesController as articles',
@@ -17,7 +17,16 @@ function config($stateProvider) {
             url: '/article/add',
             templateUrl: 'articles/templates/form.html',
             controller:'ArticleAddController as article',
-            
+        })
+        .state('article update', {
+            url: '/article/update/:id',
+            templateUrl: 'articles/templates/form.html',
+            controller:'ArticleUpdateController as article',
+            resolve: {
+               articleData: function(Articles, $stateParams){
+                    return Articles.getById($stateParams.id);
+                }
+            }
         });
 }
 

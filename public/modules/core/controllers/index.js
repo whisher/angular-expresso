@@ -2,19 +2,18 @@
 'use strict';
 
 function CoreController() {
-	var core = this;
-    	core.welcome = 'Welcome!';
-    	core.prologue = 'Angular express just an other mean stack';
+  var core = this;
+  core.welcome = 'Welcome!';
+  core.prologue = 'Angular express just an other mean stack';
 }
-function NavController($rootScope, UserStorage){
-	var nav = this;
-	nav.isAuthenticated = UserStorage.get();
-	$rootScope.$on('isAuthenticated', function(event, data) { 
-        		nav.isAuthenticated = UserStorage.get();
-      	});
-	nav.logout = function() {
-     		UserStorage.del();
-    	}; 
+function NavController(){
+  var nav = this;
+  nav.isopen = false;
+  nav.toggleDropdown = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    nav.isopen = !nav.isopen;
+  };
 }
 angular.module('core.controllers', [])
     .controller('CoreController', CoreController)

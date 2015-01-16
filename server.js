@@ -64,7 +64,7 @@ app.use(function(err, req, res, next) {
 	console.error(err.stack);
 	// TODO catch 405 status 
 	// Error page
-	res.status(500).render('500', {
+	res.status(err.status || 500).render('500', {
 		error: err.stack
 	});
 });
@@ -77,7 +77,7 @@ app.use(function(req, res) {
 	});
 });
 
-if (process.env.NODE_ENV === 'development') {
+if (app.get('env') === 'development') {
 	app.use(errorHandler());
 }
 var server = http.createServer(app);

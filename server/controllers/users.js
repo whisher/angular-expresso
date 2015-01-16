@@ -24,8 +24,8 @@ exports.user = function(req, res, next, id) {
 /**
  * Try to signin  an user
  */
-exports.login = function(passport) {
-	return function(req, res,next) {
+exports.signin = function(passport) {
+  return function(req, res,next) {
 		req.checkBody('email', 'You must enter a valid email address').isEmail();
   		req.checkBody('password', 'Password must be between 8-20 characters long').len(8, 20);
   		var errors = req.validationErrors();
@@ -33,13 +33,12 @@ exports.login = function(passport) {
 	    		return res.status(400).json(errors);
 		}
 		if (req.body.remember) {
-          			req.session.cookie.maxAge = 1000 * 60 * 3;
-        		}
-        		else {
-          			req.session.cookie.expires = false;
-        		}
-		console.log(req.body);
-        		passport.authenticate('local', function(err, user, info) {
+          	 req.session.cookie.maxAge = 1000 * 60 * 3;
+        	}
+        	else {
+          	 req.session.cookie.expires = false;
+        	}
+		passport.authenticate('local', function(err, user, info) {
             		if (err) {
                 			return res.status(500).json(utils.get500ErrorMessage(err));
             		}
@@ -59,9 +58,9 @@ exports.login = function(passport) {
     	};
 };
 /**
- * Signup
+ * Register
  */
-exports.signup = function(req, res, next) {
+exports.register = function(req, res, next) {
 
 	req.checkBody('username', 'username must be between 3-10 characters long').len(3, 10);
 	req.checkBody('email', 'You must enter a valid email address').isEmail();

@@ -24,7 +24,7 @@ exports.article = function(req, res, next, id) {
  * Create an article
  */
 exports.create = function(req, res) {
-  var article = new Article(req.body);console.log(req.user);
+  var article = new Article(req.body);
   article.user = req.user;
   article.save(function(err) {
     if (err) {
@@ -57,6 +57,7 @@ exports.destroy = function(req, res) {
     if (err) {
       return res.status(500).json([{'param':'article','msg':'Cannot delete the article'}]);
     }
+    // TODO no element found in the browser
     res.send(204);
   });
 };

@@ -12,17 +12,17 @@ function config($stateProvider,$httpProvider) {
                     } 
                 }*/
             })
-            .state('session.login', {
-                url: '/user/login',
-                templateUrl: 'users/templates/login.html',
+            .state('session.signin', {
+                url: '/user/signin',
+                templateUrl: 'users/templates/signin.html',
                 controllerAs: 'user',
-                controller:'UserLoginController'
+                controller:'UserSigninController'
              })
-            .state('session.signup', {
-                url: '/user/signup',
-                templateUrl: 'users/templates/signup.html',
+            .state('session.register', {
+                url: '/user/register',
+                templateUrl: 'users/templates/register.html',
                 controllerAs: 'user',
-                controller:'UserSignupController'
+                controller:'UserRegisterController'
              });
        
 }

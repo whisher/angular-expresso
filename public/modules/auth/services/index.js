@@ -6,12 +6,31 @@ function Auth($http) {
     isLoggedIn: function() {
         return $http.get('/api/auth/isloggedin');
     },
-    login: function(data) {
+    signin: function(data) {
         return $http.post('/api/auth/signin', data);
+    },
+    register: function(data) {
+        return $http.post('/api/auth/register', data);
+    },
+    forgot: function(data) {
+        return $http.post('/api/auth/forgot', data);
     }
   };
 }
-function loginModal($modal, $rootScope,$templateCache) {
+function UserStorage($sessionStorage) {
+  return {
+    set: function(data) {
+        $sessionStorage.user = angular.toJson(data);
+    },
+    get: function() {
+        return angular.fromJson($sessionStorage.user); 
+    },
+    del: function() {
+        delete $sessionStorage.user;
+    }
+  };
+}
+function signinModal($modal, $templateCache) {
     function successCallback (data) {
         console.log('success',data);
     }
@@ -21,21 +40,20 @@ function loginModal($modal, $rootScope,$templateCache) {
     return {
         open : function(){
             var modalInstance =  $modal.open({
-                template: $templateCache.get('auth/templates/modal-login.html'),
-                controller: 'LoginModalController',
-                controllerAs: 'auth'
+                template: $templateCache.get('auth/templates/modal.html'),
+                controller: 'SigninModalController',
+                controllerAs: 'auth',
+                size:'lg'
             });
             return modalInstance.result.then(successCallback).catch(errorCallback);
         }
     };
 }
  
-function HttpInterceptor($rootScope,$q) {
-    var canceller = $q.defer();
+function HttpInterceptor($rootScope, $q) {
     return {
         'request': function(config) {
             config.requestTimestamp = new Date().getTime();
-            config.timeout = canceller.promise;
             return config;
         },
         'response': function(response) {
@@ -44,8 +62,7 @@ function HttpInterceptor($rootScope,$q) {
         },
         'responseError': function(rejection) {
             if (rejection.status === 401) {
-                $rootScope.$emit('no-auth', rejection);
-                canceller.resolve('Unauthorized');
+                $rootScope.$emit('auth-show-modal', 'signin');
             }
             return $q.reject(rejection);
         }
@@ -54,6 +71,7 @@ function HttpInterceptor($rootScope,$q) {
 
 angular.module('auth.services', [])
     .factory('Auth', Auth)
+    .factory('UserStorage', UserStorage)
     .factory('HttpInterceptor', HttpInterceptor)
-    .factory('loginModal', loginModal);
+    .factory('signinModal', signinModal);
 })();

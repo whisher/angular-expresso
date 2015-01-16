@@ -1,5 +1,5 @@
 <form name="form" class="col-md-4 col-md-offset-4 form-user"  data-ng-submit="user.save()"novalidate>
-    <h3><span class="fa fa-sign-in"></span> Signin</h3>
+    <h3><span class="fa fa-sign-in"></span> Sign In</h3>
     <div class="form-group">
         <input tabindex="1" type="email" name="email" placeholder="Email" class="form-control" required="required" data-ng-model="user.data.email" data-user-feedback />
     </div>
@@ -8,14 +8,14 @@
     </div>
     <div class="checkbox">
             <label>
-                <input name="remember" data-ng-model="user.data.remember" type="checkbox"> Remember me
+                <input tabindex="3" name="remember" data-ng-model="user.data.remember" type="checkbox"> Remember me
             </label>
     </div>
     <div class="form-group form-no-required clearfix">
         <div class="pull-right">
                 <a data-ui-sref="session.forgot">Forgot your password?</a>&nbsp; or&nbsp;
-                <a data-ui-sref="session.signup">Sign up</a>
-                <button tabindex="6" type="submit" class="btn btn-primary">Login</button>
+                <a data-ui-sref="session.register">Register</a>
+                <button tabindex="4" type="submit" class="btn btn-primary">Sign In</button>
         </div>
     </div>
     <div show-errors errors="user.errors"></div>
