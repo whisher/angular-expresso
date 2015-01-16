@@ -1,18 +1,8 @@
 (function() {
 'use strict';
 
-function SigninModalController($modalInstance, currentShowForm, Auth) {
+function SigninModalController($rootScope, $modalInstance,  Auth) {
     var auth = this;
-    auth.current = {};
-    auth.current.signin = true;
-    auth.current.register = false;
-    auth.current.forgot = false;
-    auth.show = function (current) {
-        angular.forEach(auth.current, function(value, key) {
-           auth.current[key]  = false;
-        });
-        auth.current[current]  = true;
-    };
     auth.data = {};
     auth.signin = function () {
         Auth.signin(auth.data)
@@ -43,6 +33,7 @@ function SigninModalController($modalInstance, currentShowForm, Auth) {
     };
 
     auth.cancel = function () {
+            $rootScope.global.isModalOpen  = false;
      	$modalInstance.dismiss('cancel');
     };
  }

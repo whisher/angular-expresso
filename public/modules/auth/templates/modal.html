@@ -1,7 +1,7 @@
 <form name="form" class="col-md-8 col-md-offset-2 form-auth" novalidate>
     <button type="button" class="btn btn-default pull-right" data-ng-click="auth.cancel()"><span class="fa fa-times"></span></button>
     <!-- Start signin -->
-    <div data-ng-if="auth.current.signin">
+    <div data-ng-if="global.current.signin">
         <div class="modal-header">
             <h3 class="text-left"><span class="fa fa-sign-in"></span> Sign In</h3>
         </div>
@@ -22,15 +22,15 @@
             <div class="form-group form-no-required clearfix">
                 <div class="pull-right">
                         <button tabindex="4" type="submit" class="btn btn-primary" data-ng-click="auth.signin()">Sign In</button>
-                        <button type="button" class="btn btn-default" data-ng-click="auth.show('register')">Register</button>
-                        <button type="button" class="btn btn-default" data-ng-click="auth.show('forgot')">Forgot your password?</button>
+                        <button type="button" class="btn btn-default" data-ng-click="global.show('register')">Register</button>
+                        <button type="button" class="btn btn-default" data-ng-click="global.show('forgot')">Forgot your password?</button>
                 </div>
             </div>
-            <div show-errors errors="user.errors"></div>      
+            <div global.show-errors errors="user.errors"></div>      
         </div>
     </div>
     <!-- Start register -->
-    <div data-ng-if="auth.current.register">
+    <div data-ng-if="global.current.register">
         <div class="modal-header">
             <h3 class="text-left"><span class="fa fa-user"></span> Register</h3>
         </div>
@@ -52,15 +52,15 @@
             <div class="form-group form-no-required clearfix">
                 <div class="pull-right">
                         <button tabindex="4" type="submit" class="btn btn-primary" data-ng-click="auth.register()">Register</button>
-                        <button type="button" class="btn btn-default" data-ng-click="auth.show('signin')">Sign In</button>
-                        <button type="button" class="btn btn-default" data-ng-click="auth.show('forgot')">Forgot your password?</button>
+                        <button type="button" class="btn btn-default" data-ng-click="global.show('signin')">Sign In</button>
+                        <button type="button" class="btn btn-default" data-ng-click="global.show('forgot')">Forgot your password?</button>
                 </div>
             </div>
-            <div show-errors errors="user.errors"></div>      
+            <div global.show-errors errors="user.errors"></div>      
         </div>
     </div>
     <!-- Start forgot -->
-    <div data-ng-if="auth.current.forgot">
+    <div data-ng-if="global.current.forgot">
         <div class="modal-header">
             <h3 class="text-left"><span class="fa fa-users"></span> Forgot Password</h3>
         </div>
@@ -73,10 +73,10 @@
             <div class="form-group form-no-required clearfix">
                 <div class="pull-right">
                         <button tabindex="4" type="submit" class="btn btn-primary" data-ng-click="auth.forgot()">Reset password</button>
-                        <button type="button" class="btn btn-default" data-ng-click="auth.show('signin')">Sign In</button>
-                        <button type="button" class="btn btn-default" data-ng-click="auth.show('register')">Register</button>
+                        <button type="button" class="btn btn-default" data-ng-click="global.show('signin')">Sign In</button>
+                        <button type="button" class="btn btn-default" data-ng-click="global.show('register')">Register</button>
                 </div>
             </div>
-            <div show-errors errors="user.errors"></div>  
+            <div global.show-errors errors="user.errors"></div>  
     </div>
 </form>
