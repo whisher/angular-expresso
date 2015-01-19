@@ -10,6 +10,9 @@ function run($rootScope, signinModal, HAS_MODAL_LOGIN, UserStorage) {
       signinModal.open();
     }
   });
+  $rootScope.$on('isAuthenticated', function(event, data) { 
+        $rootScope.isAuthenticated = UserStorage.get();
+  });
   $rootScope.global.current = {};
   $rootScope.global.current.signin = true;
   $rootScope.global.current.register = false;
@@ -26,9 +29,7 @@ function run($rootScope, signinModal, HAS_MODAL_LOGIN, UserStorage) {
   };
   var isAuthenticated = UserStorage.get();
   $rootScope.global.isAuthenticated = isAuthenticated;
-  $rootScope.$on('isAuthenticated', function(event, data) { 
-    		$rootScope.isAuthenticated = UserStorage.get();
-  });
+  
   $rootScope.global.logout = function() {
         UserStorage.del();
   }; 

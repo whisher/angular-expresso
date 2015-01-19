@@ -62,7 +62,7 @@ function HttpInterceptor($rootScope, $q) {
         },
         'responseError': function(rejection) {
             if (rejection.status === 401) {
-                $rootScope.$emit('auth-show-modal', 'signin');
+                $rootScope.$emit('auth-show-modal', rejection);
             }
             return $q.reject(rejection);
         }

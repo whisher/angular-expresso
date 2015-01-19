@@ -83,6 +83,18 @@ if (app.get('env') === 'development') {
 var server = http.createServer(app);
 var io = require('socket.io')(server);
 
+var run = 0;
+io.use(function(socket, next){
+  run++; // 0 -> 1
+  socket.run = run;
+  next();
+});
+io.use(function(socket, next) {
+  run++; // 1 -> 2
+  socket.run = run;
+  next();
+});
+
 io.on('connection', function(socket){
 	console.log('a user connected');
 });

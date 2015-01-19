@@ -41,6 +41,9 @@
         <script src="/socket.io/socket.io.js"></script>
         <script>
             var socket = io();
+            socket.on('connect', function(){
+                console.log(socket);
+            });
         </script>
         <!--cordova-->
         <!--vendor-->
