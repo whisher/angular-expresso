@@ -17,16 +17,16 @@ function Auth($http) {
     }
   };
 }
-function UserStorage($sessionStorage) {
+function UserTokenStorage($sessionStorage) {
   return {
-    set: function(data) {
-        $sessionStorage.user = angular.toJson(data);
+    set: function(token) {
+        $sessionStorage.token = token;
     },
     get: function() {
-        return angular.fromJson($sessionStorage.user); 
+        return $sessionStorage.token; 
     },
     del: function() {
-        delete $sessionStorage.user;
+        $sessionStorage.$reset();
     }
   };
 }
@@ -50,10 +50,15 @@ function signinModal($modal, $templateCache) {
     };
 }
  
-function HttpInterceptor($rootScope, $q) {
+function HttpInterceptor($rootScope, $q, UserTokenStorage) {
     return {
         'request': function(config) {
+            var token = UserTokenStorage.get();
             config.requestTimestamp = new Date().getTime();
+            config.headers = config.headers || {};
+            if (token) {
+                config.headers.Authorization = 'Bearer ' + token;
+            }
             return config;
         },
         'response': function(response) {
@@ -71,7 +76,7 @@ function HttpInterceptor($rootScope, $q) {
 
 angular.module('auth.services', [])
     .factory('Auth', Auth)
-    .factory('UserStorage', UserStorage)
+    .factory('UserTokenStorage', UserTokenStorage)
     .factory('HttpInterceptor', HttpInterceptor)
     .factory('signinModal', signinModal);
 })();

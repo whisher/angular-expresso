@@ -7,7 +7,7 @@ var hasAuthorization = function(req, res, next) {
   }
   next();
 };
-module.exports = function(app,auth) {
+module.exports = function(app,auth,jwt) {
 
   // Send available options on OPTIONS requests
   app.options( '/api/articles', function (req, res) {
@@ -16,7 +16,7 @@ module.exports = function(app,auth) {
 
   // Root routing
   app.route('/api/articles')
-    .get(articles.all)
+    .get(jwt,articles.all)
     .post(articles.create)
     // 405 Method Not Allowed
     .all(function (req, res, next) {

@@ -34,6 +34,11 @@ var UserSchema = new Schema({
 	provider: {
 		type: String,
 		default: 'local'
+	},
+	role: {
+		type: String,
+		enum: ['user', 'admin'],
+		default: 'user'
 	}		
 });
 

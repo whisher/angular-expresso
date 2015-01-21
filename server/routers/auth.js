@@ -1,14 +1,10 @@
 'use strict';
-var users = require('../controllers/users');
-module.exports = function(app, passport, auth) {
-    app.route('/api/auth/signin').post(users.signin(passport));
-    app.route('/api/auth/register').post(users.userNameExists,users.userEmailExists,users.register);
-    app.route('/api/auth/me').get(auth.requiresLogin,users.me);
-    app.route('/api/auth/logout').get(users.signout);
-    app.route('/api/auth/isloggedin').get(auth.isLoggedIn);
-    // Setting up the userId param
-  app.param('userId', users.user);
-};
+var auth = require('../controllers/auth');
+module.exports = function(app, configs, passport) {
+	app.route('/auth/signin').post(auth.signin(configs, passport));
+    	app.route('/auth/register').post(auth.userNameExists,auth.userEmailExists,auth.register(configs));
+	app.route('/auth/logout').get(auth.logout);
+ };
 
 
 

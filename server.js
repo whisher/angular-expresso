@@ -11,7 +11,8 @@ var fs = require('fs'),
 	passport = require('passport'),
 	errorHandler = require('errorhandler'),
 	configs = require('./server/config/config'),
-	auth = require('./server/middlewares/auth');
+	auth = require('./server/middlewares/auth'),
+	jwt = require('./server/middlewares/jwt')(configs);
 
 // Bootstrap db connection
 var db = require('./server/config/db')(configs);
@@ -23,9 +24,14 @@ fs.readdirSync(modelsPath).forEach(function (file) {
 });
 
 require(configs.serverPath+'/config/passport')(passport);
+
+// We are going to protect /api routes with JWT
+//app.use('/api', expressJwt({secret: configs.apiSecret}));
+
+
 require(configs.serverPath+'/config/express')(configs,app,passport,db);
 
- if (process.env.NODE_ENV === 'development') {
+ if (app.get('env') === 'development') {
  	app.disable('etag');
 	app.use(require('connect-livereload')());
 }
@@ -48,9 +54,9 @@ router.use(function(req, res, next) {
 app.use('/api', router);
 */
 // Routes
-require(configs.serverPath+'/routers/auth')(app,passport,auth);
-
-require(configs.serverPath+'/routers/articles')(app,auth);
+require(configs.serverPath+'/routers/auth')(app, configs, passport);
+require(configs.serverPath+'/routers/users')(app, auth);
+require(configs.serverPath+'/routers/articles')(app, auth, jwt);
 
 
 
@@ -62,6 +68,10 @@ app.use(function(err, req, res, next) {
 	}
 	// Log it
 	console.error(err.stack);
+	//For /api
+	if (err.constructor.name === 'UnauthorizedError') {
+    		res.status(401).send('Unauthorized');
+  	}
 	// TODO catch 405 status 
 	// Error page
 	res.status(err.status || 500).render('500', {
@@ -83,17 +93,7 @@ if (app.get('env') === 'development') {
 var server = http.createServer(app);
 var io = require('socket.io')(server);
 
-var run = 0;
-io.use(function(socket, next){
-  run++; // 0 -> 1
-  socket.run = run;
-  next();
-});
-io.use(function(socket, next) {
-  run++; // 1 -> 2
-  socket.run = run;
-  next();
-});
+
 
 io.on('connection', function(socket){
 	console.log('a user connected');

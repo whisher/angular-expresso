@@ -4,35 +4,37 @@
 function UserController() { 
 	var user = this;
 }
-function UserSigninController($rootScope, $state, Users, UserStorage) {
+function UserSigninController($rootScope, $state, Users, UserTokenStorage) {
 	var user = this;
 	user.data = {};
     	user.save = function() {
     		Users.signin(user.data).then(function(response) {
-			console.log(response.data);
-			UserStorage.set(response.data);
-			$rootScope.$emit('isAuthenticated', response.data);
+			console.log(response.data.token);
+			UserTokenStorage.set(response.data.token);
+			$rootScope.$emit('isAuthenticated', response.data.token);
 			$state.go('home');
 		})
 		.catch(function(response) {
+			UserTokenStorage.del();
 			console.log(response);
 			user.errors = response.data;
 		});
 	};
 }
-function UserRegisterController($state, Users) {
+function UserRegisterController($rootScope, $state, Users, UserTokenStorage) {
 	var user = this;
 	user.data = {};
 	user.errors  = [];
 	user.save = function(isValid) {
-		Users.signup(user.data).then(function(response) {
-			console.log(response);
-			UserStorage.set(response.data);
-			$rootScope.$emit('isAuthenticated', response.data);
+		Users.register(user.data).then(function(response) {
+			console.log(response.data.token);
+			UserTokenStorage.set(response.data.token);
+			$rootScope.$emit('isAuthenticated', response.data.token);
 			$state.go('home');
 		})
 		.catch(function(response) {
 			console.log(response);
+			UserTokenStorage.del();
 			user.errors = response.data;
 		});
 	};

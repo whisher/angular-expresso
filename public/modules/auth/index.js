@@ -1,18 +1,21 @@
 (function() {
 'use strict';
 
-function run($rootScope, signinModal, HAS_MODAL_LOGIN, UserStorage) {
+function run($rootScope, jwtHelper, signinModal, HAS_MODAL_LOGIN, UserTokenStorage) {
   $rootScope.global  = {};
   $rootScope.global.isModalOpen  = false;
+
   $rootScope.$on('auth-show-modal', function(event, data) { 
     if(HAS_MODAL_LOGIN){
       $rootScope.global.isModalOpen  = true;
       signinModal.open();
     }
   });
+
   $rootScope.$on('isAuthenticated', function(event, data) { 
-        $rootScope.isAuthenticated = UserStorage.get();
+    $rootScope.global.isAuthenticated =  jwtHelper.decodeToken(UserTokenStorage.get());
   });
+
   $rootScope.global.current = {};
   $rootScope.global.current.signin = true;
   $rootScope.global.current.register = false;
@@ -27,26 +30,33 @@ function run($rootScope, signinModal, HAS_MODAL_LOGIN, UserStorage) {
     });
     $rootScope.global.current[current]  = true;
   };
-  var isAuthenticated = UserStorage.get();
-  $rootScope.global.isAuthenticated = isAuthenticated;
-  
+  var token = UserTokenStorage.get();
+  if(token){
+    token = jwtHelper.decodeToken(token);
+  }
+  $rootScope.global.isAuthenticated =  token;
+ 
   $rootScope.global.logout = function() {
-        UserStorage.del();
+        UserTokenStorage.del();
   }; 
+
   $rootScope.global.isOwner = function(authorId) {
     if(!isAuthenticated){
       return false;
     }
     return isAuthenticated._id === authorId;
   }; 
+
 }
 
-angular.module('auth',
-	['ngStorage',
-	'auth.services', 
-	'auth.controllers', 
-	'auth.routes'])
-    .run(run);
+angular.module('auth',[
+  'ngStorage',
+   'angular-jwt',
+  'auth.services', 
+  'auth.controllers', 
+  'auth.routes'
+  ])
+  .run(run);
             
 })();
 
