@@ -58,7 +58,7 @@ exports.destroy = function(req, res) {
       return res.status(500).json([{'param':'article','msg':'Cannot delete the article'}]);
     }
     // TODO no element found in the browser
-    res.send(204);
+    res.sendStatus(204);
   });
 };
 

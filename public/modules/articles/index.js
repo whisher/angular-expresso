@@ -6,6 +6,7 @@ angular.module('articles', [
       'templates',
       'articles.services',
       'articles.directives',
+      'articles.filter',
       'articles.controllers',
       'articles.routes'
 ]);

@@ -53,7 +53,7 @@ var config = {
                 images: BUILD_FOLDER + '/images',
                 
             },
-            phonegap: {
+            dist: {
                 index: RELEASE_FOLDER,
                 styles: RELEASE_FOLDER + '/styles',
                 scripts: RELEASE_FOLDER + '/scripts',

@@ -1,10 +1,10 @@
 (function() {
 'use strict';
 
-function run($rootScope, jwtHelper, signinModal, HAS_MODAL_LOGIN, UserTokenStorage) {
+function run($rootScope, $state, jwtHelper, signinModal, HAS_MODAL_LOGIN, UserTokenStorage, Auth) {
   $rootScope.global  = {};
   $rootScope.global.isModalOpen  = false;
-
+  $rootScope.global.errors = [];
   $rootScope.$on('auth-show-modal', function(event, data) { 
     if(HAS_MODAL_LOGIN){
       $rootScope.global.isModalOpen  = true;
@@ -12,7 +12,8 @@ function run($rootScope, jwtHelper, signinModal, HAS_MODAL_LOGIN, UserTokenStora
     }
   });
 
-  $rootScope.$on('isAuthenticated', function(event, data) { 
+  $rootScope.$on('auth-is-authenticated', function(event, data) { 
+    UserTokenStorage.set(data);
     $rootScope.global.isAuthenticated =  jwtHelper.decodeToken(UserTokenStorage.get());
   });
 
@@ -29,6 +30,7 @@ function run($rootScope, jwtHelper, signinModal, HAS_MODAL_LOGIN, UserTokenStora
       $rootScope.global.current[key]  = false;
     });
     $rootScope.global.current[current]  = true;
+    $rootScope.global.errors.length = 0;
   };
   var token = UserTokenStorage.get();
   if(token){
@@ -37,21 +39,42 @@ function run($rootScope, jwtHelper, signinModal, HAS_MODAL_LOGIN, UserTokenStora
   $rootScope.global.isAuthenticated =  token;
  
   $rootScope.global.logout = function() {
-        UserTokenStorage.del();
+    Auth.logout().then(function(response) {
+      UserTokenStorage.del();
+      delete $rootScope.global.isAuthenticated;
+      $state.go('home');     
+    })
+    .catch(function(response) {
+      throw new Error('Sorry, something went so wrong');
+    });
+        
   }; 
 
   $rootScope.global.isOwner = function(authorId) {
-    if(!isAuthenticated){
+    if(! $rootScope.global.isAuthenticated){
       return false;
-    }
-    return isAuthenticated._id === authorId;
+    }console.log(authorId,$rootScope.global.isAuthenticated.id);
+    return  $rootScope.global.isAuthenticated.id === authorId;
   }; 
-
+  $rootScope.global.signin = function() {
+    if(HAS_MODAL_LOGIN){
+      $rootScope.global.show('signin');
+      return;
+    }
+    $state.go('session.signin');  
+  }; 
+  $rootScope.global.register = function() {
+    if(HAS_MODAL_LOGIN){
+      $rootScope.global.show('register');
+      return;
+    }
+    $state.go('session.register');  
+  }; 
 }
 
 angular.module('auth',[
   'ngStorage',
-   'angular-jwt',
+  'angular-jwt',
   'auth.services', 
   'auth.controllers', 
   'auth.routes'

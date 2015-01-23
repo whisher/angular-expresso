@@ -3,28 +3,42 @@
 
 function config($stateProvider) {
     $stateProvider      
-        .state('auth.articles', {
+        .state('articles', {
             url: '/articles',
             templateUrl: 'articles/templates/index.html',
-            controller:'ArticlesController as articles',
+            controller:'ArticlesController',
+            controllerAs: 'articles',
             resolve:{
             	articlesData : function(Articles){
             		return Articles.get();
             	}
             }
         })
-        .state('article add', {
-            url: '/article/add',
+        .state('article create', {
+            url: '/article/create',
             templateUrl: 'articles/templates/form.html',
-            controller:'ArticleAddController as article',
+            controller:'ArticleCreateController',
+            controllerAs: 'article'
         })
         .state('article update', {
             url: '/article/update/:id',
             templateUrl: 'articles/templates/form.html',
-            controller:'ArticleUpdateController as article',
+            controller:'ArticleUpdateController',
+            controllerAs: 'article',
             resolve: {
                articleData: function(Articles, $stateParams){
-                    return Articles.getById($stateParams.id);
+                    return Articles.show($stateParams.id);
+                }
+            }
+        })
+        .state('article show', {
+            url: '/article/show/:id',
+            templateUrl: 'articles/templates/show.html',
+            controller:'ArticleShowController',
+            controllerAs: 'article',
+            resolve: {
+               articleData: function(Articles, $stateParams){
+                    return Articles.show($stateParams.id);
                 }
             }
         });

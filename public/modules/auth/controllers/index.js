@@ -9,8 +9,8 @@ function SigninModalController($rootScope, $modalInstance,  Auth) {
             .then(function(response) {
                 $modalInstance.close(response.data);
             })
-            .catch(function(response) {
-                auth.errors = response.data;
+            .catch(function(response) {alert(response.data);
+                $rootScope.global.errors = response.data;
 	});
     };
     auth.register = function () {
@@ -19,7 +19,7 @@ function SigninModalController($rootScope, $modalInstance,  Auth) {
                 $modalInstance.close(response.data);
             })
             .catch(function(response) {
-                auth.errors = response.data;
+                $rootScope.global.errors = response.data;
             });
     };
     auth.forgot = function () {
@@ -28,7 +28,7 @@ function SigninModalController($rootScope, $modalInstance,  Auth) {
                 $modalInstance.close(response.data);
             })
             .catch(function(response) {
-                auth.errors = response.data;
+                $rootScope.global.errors = response.data;
             });
     };
 

@@ -1,0 +1,15 @@
+<div class="container">
+  <ul class="media-list">
+    <li class="media">
+      <span class="media-left">
+        <i class="fa fa-calendar">{{::article.data.created | date:'longDate'}}</i>
+        <br>
+        <i class="fa fa-user">{{::article.data.user.username}}</i>
+      </span>
+      <div class="media-body">
+        <h3 class="media-heading">{{::article.data.title}}</h3>
+        <div class="media-content">{{::article.data.content}}</div>
+      </div>
+    </li>
+  </ul>
+</div>

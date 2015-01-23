@@ -1,7 +1,12 @@
 <div class="container">
-  <div class="row" data-ng-if="isAuthenticated">
+  <div class="row" data-ng-if="!articles.data.length">
+      <div class="well">
+          <h5>There in no articles yet</h5>
+      </div>
+  </div>
+  <div class="row" data-ng-if="global.isAuthenticated">
       <div class="well add-new-box clearfix">
-          <a data-ui-sref="article add" class="btn btn-primary pull-right">New</a>
+          <a data-ui-sref="article create" class="btn btn-primary pull-right">New</a>
       </div>
   </div>
   <ul class="media-list" data-ng-if="articles.data.length > 0">
@@ -12,9 +17,9 @@
         <i class="fa fa-user">{{::article.user.username}}</i>
       </span>
       <div class="media-body">
-        <h4 class="media-heading">{{::article.title}}</h4>
-        <div class="media-content">{{::article.content}}</div>
-        <div class="media-manager" data-ng-if="isOwner(article.user._id)">
+        <h3 class="media-heading"><a data-ui-sref="article show({ id: article._id })">{{::article.title}}</a></h3>
+        <div class="media-content">{{::article.content | truncate:50}}</div>
+        <div class="media-manager" data-ng-if="global.isOwner(article.user._id)">
           <a class="btn btn-warning btn-sm" data-ui-sref="article update({ id: article._id })">
             <i class="fa fa-pencil"></i> Update
           </a>

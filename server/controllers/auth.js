@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
 
 function setJwtUser(user) {
   var isAdmin = user.role.indexOf('admin') !== -1;
-  return {username:user.username,isAdmin:isAdmin,email:user.email};
+  return {username:user.username,isAdmin:isAdmin,email:user.email,id:user._id};
 }
 
 /**
@@ -31,7 +31,7 @@ exports.signin = function(configs, passport) {
       if (err) {
         return res.status(500).json(utils.get500ErrorMessage(err));
       }
-      if (!user) {
+      if (!user) {console.log(info);
         return res.status(403).json(utils.get500ErrorMessage(info));
       }
       req.login(user, function(err) {
@@ -76,7 +76,8 @@ exports.register  = function(configs) {
 
 exports.logout = function(req, res) {
 	req.logout();
-	res.redirect('/');
+	// TODO no element found in the browser
+      res.send(200);
 };
 exports.userEmailExists = function(req, res, next) {
 	User.count({

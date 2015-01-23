@@ -1,22 +1,28 @@
 (function() {
   'use strict';
 
+var HAS_MODAL_LOGIN = true;
+
 function Auth($http) {
   return {
     isLoggedIn: function() {
-        return $http.get('/api/auth/isloggedin');
+        return $http.get('/auth/isloggedin');
     },
     signin: function(data) {
-        return $http.post('/api/auth/signin', data);
+        return $http.post('/auth/signin', data);
     },
     register: function(data) {
-        return $http.post('/api/auth/register', data);
+        return $http.post('/auth/register', data);
+    },
+    logout: function() {
+        return $http.get('/auth/logout');
     },
     forgot: function(data) {
-        return $http.post('/api/auth/forgot', data);
+        return $http.post('/auth/forgot', data);
     }
   };
 }
+
 function UserTokenStorage($sessionStorage) {
   return {
     set: function(token) {
@@ -30,13 +36,12 @@ function UserTokenStorage($sessionStorage) {
     }
   };
 }
-function signinModal($modal, $templateCache) {
+
+function signinModal($rootScope, $modal, $templateCache) {
     function successCallback (data) {
-        console.log('success',data);
+        $rootScope.$emit('auth-is-authenticated', data.token);
     }
-    function errorCallback (data) {
-        console.log('fail',data);
-    }
+    function errorCallback (data) {}
     return {
         open : function(){
             var modalInstance =  $modal.open({
@@ -75,6 +80,7 @@ function HttpInterceptor($rootScope, $q, UserTokenStorage) {
 }
 
 angular.module('auth.services', [])
+    .constant('HAS_MODAL_LOGIN', HAS_MODAL_LOGIN)
     .factory('Auth', Auth)
     .factory('UserTokenStorage', UserTokenStorage)
     .factory('HttpInterceptor', HttpInterceptor)

@@ -72,6 +72,8 @@ app.use(function(err, req, res, next) {
 	if (err.constructor.name === 'UnauthorizedError') {
     		res.status(401).send('Unauthorized');
   	}
+  	//TODO
+  	console.log('Is xhr', req.xhr);
 	// TODO catch 405 status 
 	// Error page
 	res.status(err.status || 500).render('500', {
@@ -92,8 +94,6 @@ if (app.get('env') === 'development') {
 }
 var server = http.createServer(app);
 var io = require('socket.io')(server);
-
-
 
 io.on('connection', function(socket){
 	console.log('a user connected');

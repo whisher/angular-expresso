@@ -17,11 +17,11 @@
                 <ul class="nav navbar-nav">
                     <a data-ui-sref="home" class="navbar-brand"><i class="logo"></i> Angular Express</a>
                     <li ui-sref-active="active"><a data-ui-sref="home">Home</a></li>
-                    <li ui-sref-active="active"><a data-ui-sref="auth.articles">Articles</a></li>
+                    <li ui-sref-active="active"><a data-ui-sref="articles">Articles</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" data-ng-if="!global.isAuthenticated">
-                    <li><a data-ng-click="global.show('signin')">Sign In</a></li>
-                    <li><a data-ng-click="global.show('register')">Register</a></li>
+                    <li><a href="" data-ng-click="global.signin()">Sign In</a></li>
+                    <li><a href="" data-ng-click="global.register()">Register</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" data-ng-if="global.isAuthenticated">
                     <li>
@@ -30,7 +30,7 @@
                             <i class="fa fa-user"></i> <span ng-bind="global.isAuthenticated.username"></span><span class="caret"></span>
                         </button>
                          <ul class="dropdown-menu" role="menu">
-                            <li><a href="/auth/logout" data-ng-click="global.logout()">Logout</a></li>
+                            <li><a href="" data-ng-click="global.logout()">Logout</a></li>
                          </ul>
                      </div>
                      </li>
@@ -42,7 +42,7 @@
         <script>
             var socket = io();
             socket.on('connect', function(){
-                console.log(socket);
+                
             });
         </script>
         <!--cordova-->

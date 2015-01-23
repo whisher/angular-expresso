@@ -31,14 +31,10 @@ module.exports = function(passport) {
                     return done(err);
                 }
                 if (!user) {
-                    return done(null, false, {
-                        message: 'Unknown user or invalid password'
-                    });
+                    return done(null, false, 'Unknown user or invalid password');
                 }
                 if (!user.authenticate(password)) {
-                    return done(null, false, {
-                        message: 'Unknown user or invalid password'
-                    });
+                    return done(null, false, 'Unknowng user or invalid password');
                 }
 
                 return done(null, user);

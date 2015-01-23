@@ -22,6 +22,6 @@ module.exports = gulp.task('index', function () {
       replace('<!--scripts-->', '<script src="scripts/' + config.filenames.scripts + '"></script>')
     )
     .pipe(gulpif(release,
-    gulp.dest(config.paths.dest.phonegap.index),
+    gulp.dest(config.paths.dest.dist.index),
           gulp.dest(config.paths.dest.build.index)));
 });
