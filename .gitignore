@@ -21,7 +21,7 @@ bower_components
 build/
 tmp/
 dist/
-src/tests/unit-result/
+public/tests/unit-result/
 log/
 
 # --------------------

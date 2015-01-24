@@ -5,10 +5,11 @@ angular.element(document).ready(function() {
     angular.bootstrap(document, ['app']);
 });
 
-function config($locationProvider, $urlRouterProvider, $logProvider, DEBUG) {
+function config($locationProvider, $urlRouterProvider, $logProvider, $httpProvider, DEBUG) {
     $locationProvider.hashPrefix('!');
     $urlRouterProvider.otherwise('/');  
     $logProvider.debugEnabled(DEBUG);
+    $httpProvider.useApplyAsync(true);
 }
 
 function run($log) {

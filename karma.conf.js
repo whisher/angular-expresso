@@ -6,8 +6,11 @@ var src = config.paths.src;
 var scriptsTotests = [
     'bower_components/angular-mocks/angular-mocks.js',
     'tmp/templates/templates.js',
-    'src/modules/home/**/*.js',
-    'src/tests/unit/**/*.js'];
+    'public/modules/articles/**/*.js',
+    'public/modules/auth/**/*.js',
+    'public/modules/core/**/*.js',
+    'public/modules/users/**/*.js',
+    'public/tests/unit/**/*.js'];
 var files = src.vendor.concat(scriptsTotests);
   
 module.exports = function(config) {
@@ -38,7 +41,7 @@ module.exports = function(config) {
     },
 
     htmlReporter: {
-        outputDir: 'src/tests/unit-result/html'
+        outputDir: 'public/tests/unit-result/html'
     },
 
     // test results reporter to use

@@ -11,10 +11,6 @@ module.exports = gulp.task('index', function () {
     .pipe(
       replace('<!--styles-->', '<link rel="stylesheet" href="styles/' + config.filenames.styles + '">')
     )
-    .pipe(gulpif(release,
-      replace('<!--cordova-->', '<script type="text/javascript" src="cordova.js"></script>'),
-      replace('<!--cordova-->', '')
-    ))
     .pipe(
       replace('<!--vendor-->', '<script src="scripts/' + config.filenames.vendor + '"></script>')
     )
