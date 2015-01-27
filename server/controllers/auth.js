@@ -14,6 +14,16 @@ function setJwtUser(user) {
 }
 
 /**
+ * just logged route
+ */
+exports.isjustlogged = function(req, res) {
+  if (req.isAuthenticated()) {
+    return res.sendStatus(403);
+  }
+  return res.sendStatus(200);
+};
+
+/**
  * Try to signin  an user
  */
 exports.signin = function(configs, passport) {
@@ -50,6 +60,9 @@ exports.signin = function(configs, passport) {
  */
 exports.register  = function(configs) {
   return function(req, res, next) {
+    if (req.isAuthenticated()) {
+      return req.sendStatus(403);
+    }
     req.checkBody('username', 'username must be between 3-10 characters long').len(3, 10);
     req.checkBody('email', 'You must enter a valid email address').isEmail();
     req.checkBody('password', 'Password must be between 8-20 characters long').len(8, 20);
@@ -77,8 +90,9 @@ exports.register  = function(configs) {
 exports.logout = function(req, res) {
 	req.logout();
 	// TODO no element found in the browser
-      res.send(200);
+      res.sendStatus(200);
 };
+
 exports.userEmailExists = function(req, res, next) {
 	User.count({
         		email: req.body.email
@@ -89,6 +103,7 @@ exports.userEmailExists = function(req, res, next) {
            		res.status(400).json([{'param':'email','msg':'The email <'+req.body.email +'> is already registered'}]);
 	});
 };
+
 exports.userNameExists = function(req, res, next) {
 	User.count({
         		username: req.body.username

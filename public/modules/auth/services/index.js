@@ -1,7 +1,8 @@
 (function() {
   'use strict';
 
-var HAS_MODAL_LOGIN = true;
+// If false signin / register in view otherwise in modal
+var HAS_MODAL_LOGIN = false;
 
 function Auth($http) {
   return {
@@ -72,7 +73,11 @@ function HttpInterceptor($rootScope, $q, UserTokenStorage) {
         },
         'responseError': function(rejection) {
             if (rejection.status === 401) {
-                $rootScope.$emit('auth-show-modal', rejection);
+                $rootScope.$emit('auth-unauthorized', rejection);
+            }
+            if (rejection.status === 403) {
+                $rootScope.$emit('auth-forbidden', rejection);
+                console.log('OOOOPPPPPPPSSSSS');
             }
             return $q.reject(rejection);
         }

@@ -1,10 +1,11 @@
 'use strict';
-var auth = require('../controllers/auth');
-module.exports = function(app, configs, passport) {
-	app.route('/auth/signin').post(auth.signin(configs, passport));
-    	app.route('/auth/register').post(auth.userNameExists,auth.userEmailExists,auth.register(configs));
-	app.route('/auth/logout').get(auth.logout);
- };
+var _auth = require('../controllers/auth');
+module.exports = function(app, auth, configs, passport) {
+	app.route('/auth/signin').post(auth.isjustlogged, _auth.signin(configs, passport));
+    	app.route('/auth/register').post(auth.isjustlogged, _auth.userNameExists, _auth.userEmailExists,_auth.register(configs));
+	app.route('/auth/logout').get(auth.isnotlogged, _auth.logout);
+	app.route('/auth/isjustlogged').get(_auth.isjustlogged);
+};
 
 
 

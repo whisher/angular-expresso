@@ -31,6 +31,11 @@ var config = {
                 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/**',
                 'bower_components/fontawesome/fonts/**'
             ],
+            assets: [
+                SRC_FOLDER + '/favicon.ico',
+                SRC_FOLDER + '/humans.txt',
+                SRC_FOLDER + '/robots.txt'
+            ],
             images: SRC_FOLDER + '/images/**/*',
             templates: SRC_FOLDER + '/modules/**/templates/*.html',
             templatesCompiled: TMP_FOLDER + '/templates',

@@ -4,6 +4,7 @@
 function UserController() { 
 	var user = this;
 }
+
 function UserSigninController($rootScope, $state, Users) {
 	var user = this;
 	user.data = {};
@@ -17,7 +18,8 @@ function UserSigninController($rootScope, $state, Users) {
 		});
 	};
 }
-function UserRegisterController($rootScope, $state, Users, UserTokenStorage) {
+
+function UserRegisterController($rootScope, $state, Users) {
 	var user = this;
 	user.data = {};
 	user.errors  = [];

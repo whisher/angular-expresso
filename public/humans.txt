@@ -1,0 +1,14 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+Author: Fabio Bedini aka whisher
+Email : io@ilwebdifabio.it
+Location: Genova
+   
+# THANKS
+mean.io 
+meanjs.org
+
+# TECHNOLOGY COLOPHON
+Node.js, Express 4, MongoDb , Mongoosejs, Ejs, HTML5, CSS3, Angularjs, Gulp, socket.io

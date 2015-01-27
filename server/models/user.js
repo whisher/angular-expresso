@@ -66,6 +66,9 @@ UserSchema.methods.generateHash = function(password) {
 	return bcrypt.compareSync(password, this.password);
 };
 
+UserSchema.methods.isAdmin = function() {
+    return this.role.indexOf('admin') !== -1;
+};
 /**
 * Create the model for users and expose it to our app
 */

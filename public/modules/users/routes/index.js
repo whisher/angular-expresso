@@ -6,11 +6,11 @@ function config($stateProvider,$httpProvider) {
        .state('session', {
                 abstract: true,
                 templateUrl: 'users/templates/session.html',
-                /*resolve: {
-                    issessionedin: function(Sessions){
-                        return Sessions.isSessionedIn();
+                resolve: {
+                    isjustlogged: function(Users){
+                        return Users.isjustlogged();
                     } 
-                }*/
+                }
             })
             .state('session.signin', {
                 url: '/user/signin',

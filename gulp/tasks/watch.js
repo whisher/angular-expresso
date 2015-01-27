@@ -12,14 +12,14 @@ module.exports = gulp.task('watch', function() {
     var devFilesWatcher = gulp.watch(config.paths.src.jsGlobs, ['hint']);
     devFilesWatcher.on('change', server.notify);
     
-    var unitWatcher = gulp.watch(config.paths.src.unit, ['unit']);
-    unitWatcher.on('change', server.notify);
+    //var unitWatcher = gulp.watch(config.paths.src.unit, ['unit']);
+    //unitWatcher.on('change', server.notify);
     
     var indexWatcher = gulp.watch(config.paths.src.index, ['index']);
     indexWatcher.on('change',server.notify);
     
-    var e2eWatcher = gulp.watch(config.paths.src.e2e, ['e2e']);
-    e2eWatcher.on('change', server.notify);
+    //var e2eWatcher = gulp.watch(config.paths.src.e2e, ['e2e']);
+    //e2eWatcher.on('change', server.notify);
     
     var templatesWatcher = gulp.watch(config.paths.src.templates, ['templates', 'scripts']);
     var scriptsWatcher = gulp.watch(config.paths.src.scripts, [ 'scripts']);

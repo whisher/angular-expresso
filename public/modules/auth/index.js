@@ -5,12 +5,17 @@ function run($rootScope, $state, jwtHelper, signinModal, HAS_MODAL_LOGIN, UserTo
   $rootScope.global  = {};
   $rootScope.global.isModalOpen  = false;
   $rootScope.global.errors = [];
-  $rootScope.$on('auth-show-modal', function(event, data) { 
+  
+  $rootScope.$on('auth-unauthorized', function(event, data) { 
     UserTokenStorage.del();
     if(HAS_MODAL_LOGIN){
       $rootScope.global.isModalOpen  = true;
       signinModal.open();
     }
+  });
+
+  $rootScope.$on('auth-forbidden', function(event, data) { 
+    UserTokenStorage.del();
   });
 
   $rootScope.$on('auth-is-authenticated', function(event, data) { 
