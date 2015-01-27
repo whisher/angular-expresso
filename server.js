@@ -7,6 +7,7 @@ var fs = require('fs'),
 	http = require('http'),
 	express = require('express'),
 	app = express(),
+	favicon = require('serve-favicon'),
 	path = require('path'),
 	passport = require('passport'),
 	errorHandler = require('errorhandler'),
@@ -36,6 +37,8 @@ require(configs.serverPath+'/config/express')(configs,app,passport,db);
 	app.use(require('connect-livereload')());
 }
 app.set('port', process.env.PORT || 3000);
+
+app.use(favicon(path.join(configs.rootPath,configs.releasePath,'favicon.ico')));
 app.use(express.static( path.join(configs.rootPath, configs.releasePath)));
 
 /*
