@@ -1,7 +1,9 @@
 'use strict';
-var articles = require('../controllers/articles');
-// Article authorization helpers
 
+/**
+ * Module dependencies.
+ */
+var articles = require('../controllers/articles');
 module.exports = function(app, auth, jwt) {
 
   // Send available options on OPTIONS requests
@@ -12,7 +14,7 @@ module.exports = function(app, auth, jwt) {
   // Root routing
   app.route('/api/articles')
     .get(articles.all)
-    .post(jwt, articles.create)
+    .post(jwt,articles.create)
     // 405 Method Not Allowed
     .all(function (req, res, next) {
       var err = new Error();

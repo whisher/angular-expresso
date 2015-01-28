@@ -15,11 +15,11 @@ describe('Unit: CoreController', function() {
     }));
 
     it('should have welcome.', function() {
-        expect($scope.core.welcome).toEqual('Welcome!');
+        expect($scope.core.welcome).toEqual('Welcome to Angular Expresso.');
     });
 
     it('should have prologue.', function() {
-        expect($scope.core.prologue).toEqual('Angular express just an other mean stack');
+        expect($scope.core.prologue).toEqual('A Simple and easy starting point for full stack javascript web development.');
     });
     
 });

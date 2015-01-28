@@ -57,9 +57,12 @@ function run($rootScope, $state, jwtHelper, signinModal, HAS_MODAL_LOGIN, UserTo
   }; 
 
   $rootScope.global.isOwner = function(authorId) {
-    if(! $rootScope.global.isAuthenticated){
+    if(!$rootScope.global.isAuthenticated){
       return false;
-    }console.log(authorId,$rootScope.global.isAuthenticated.id);
+    }
+    if($rootScope.global.isAuthenticated.isAdmin){
+      return true;
+    }
     return  $rootScope.global.isAuthenticated.id === authorId;
   }; 
   $rootScope.global.signin = function() {

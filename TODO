@@ -1,4 +1,6 @@
 server/config/env
 development.js missing
 exports.get500ErrorMessage
-gulp assets in the / favicon robot
+auth setJwtUser is Admin()
+Find a better way to manage 404/500
+gulp images

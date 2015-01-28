@@ -30,7 +30,8 @@ module.exports = {
   // is used to compute a session hash
   apiSecret: 'Angular-Express',
   sessionSecret: 'Angular-Express',
-
+  // Time Expiration token
+  expiresInMinutes: 60*5,
   // The name of the MongoDB collection to store sessions in
   sessionCollection: 'sessions',
 
@@ -49,5 +50,7 @@ module.exports = {
   },
 
   // The session cookie name
-  sessionName: 'connect.sid'
+  sessionName: 'connect.sid',
+  // If true when there is a 404/500 status the app use the 404/500 route
+  niceErrorPage: true
 };

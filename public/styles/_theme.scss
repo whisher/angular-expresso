@@ -15,30 +15,37 @@ body {
   }
 }
 [ng-cloak] {display: none;}
-[ng-cloak].overlay {display: block !important;
-	bottom: 0;
-    	background-color: $primaryTextColor;
-    	left: 0;
-    	position: fixed;
-    	right: 0;
-    	top: 0;
-    	z-index:9999;
-    	opacity: 0.8;
-    	filter: alpha(opacity=80);
-    	div{
-    		display:none;
-    	}
-	&:before {
-	   	@extend .fa; 
-	   	@extend .fa-circle-o-notch; 
-	   	@extend .fa-spin; 
-            color:$lightPrimaryColor;
-	   	font-size: 4em;
-            position: absolute;
-		top: 50%;
-   	}
+[ng-cloak].overlay {
+  display: block !important;
+  bottom: 0;
+  background-color: $primaryTextColor;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index:9999;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+  div{
+    display:none;
+  }
+  &:before {
+    @extend .fa; 
+    @extend .fa-circle-o-notch; 
+    @extend .fa-spin; 
+    color:$lightPrimaryColor;
+    font-size: 4em;
+    position: absolute;
+    top: 50%;
+  }
 }
 
+.page-error-status{
+  @extend .text-danger;
+}
+.page-error-msg{
+  @extend .text-warning;
+}
 
 
 .modal-backdrop {

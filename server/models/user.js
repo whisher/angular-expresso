@@ -67,8 +67,9 @@ UserSchema.methods.generateHash = function(password) {
 };
 
 UserSchema.methods.isAdmin = function() {
-    return this.role.indexOf('admin') !== -1;
+    	return this.role.indexOf('admin') !== -1;
 };
+
 /**
 * Create the model for users and expose it to our app
 */

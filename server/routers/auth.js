@@ -1,4 +1,8 @@
 'use strict';
+
+/**
+ * Module dependencies.
+ */
 var _auth = require('../controllers/auth');
 module.exports = function(app, auth, configs, passport) {
 	app.route('/auth/signin').post(auth.isjustlogged, _auth.signin(configs, passport));

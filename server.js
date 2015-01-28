@@ -75,21 +75,23 @@ app.use(function(err, req, res, next) {
 	if (err.constructor.name === 'UnauthorizedError') {
     		res.status(401).send('Unauthorized');
   	}
-  	//TODO
-  	console.log('Is xhr', req.xhr);
-	// TODO catch 405 status 
-	// Error page
-	res.status(err.status || 500).render('500', {
-		error: err.stack
-	});
+  	if (err.status === 405) {
+    		res.status(405).send('Method Not Allowed');
+  	}
+  	if(configs.niceErrorPage){
+		return res.status(500).render('500');
+  	}
+  	res.status(500).send('Internal Server Error');
 });
 
 // Assume 404 since no middleware responded
 app.use(function(req, res) {
-	res.status(404).render('404', {
-		url: req.originalUrl,
-		error: 'Not Found'
-	});
+	// Log it
+	console.error(req.url);
+	if(configs.niceErrorPage){
+		return res.status(404).render('404');
+	}
+	res.status(404).send('Not Found');
 });
 
 if (app.get('env') === 'development') {

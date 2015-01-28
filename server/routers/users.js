@@ -1,4 +1,8 @@
 'use strict';
+
+/**
+ * Module dependencies.
+ */
 var users = require('../controllers/users');
 module.exports = function(app, auth) {
 	// Setting up the userId param

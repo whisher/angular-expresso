@@ -8,11 +8,6 @@ var mongoose = require('mongoose'),
       jwt = require('jsonwebtoken'),
 	utils = require('../utils/errors');
 
-function setJwtUser(user) {
-  var isAdmin = user.role.indexOf('admin') !== -1;
-  return {username:user.username,isAdmin:isAdmin,email:user.email,id:user._id};
-}
-
 /**
  * just logged route
  */
@@ -41,14 +36,15 @@ exports.signin = function(configs, passport) {
       if (err) {
         return res.status(500).json(utils.get500ErrorMessage(err));
       }
-      if (!user) {console.log(info);
+      if (!user) {
         return res.status(403).json(utils.get500ErrorMessage(info));
       }
       req.login(user, function(err) {
 	 if (err) {
 	     return res.status(500).json(utils.get500ErrorMessage(err));
         }
-        var token = jwt.sign(setJwtUser(user), configs.apiSecret, { expiresInMinutes: 60*5 });
+        var userData =  {username:user.username,isAdmin:user.isAdmin(),email:user.email,id:user._id};
+        var token = jwt.sign(userData, configs.apiSecret, { expiresInMinutes: configs.expiresInMinutes });
         res.json({ token: token });
         
       });
@@ -80,7 +76,8 @@ exports.register  = function(configs) {
         if (err) {
 	   return res.status(500).json(utils.get500ErrorMessage(err));
         } 
-        var token = jwt.sign(setJwtUser(user), configs.apiSecret, { expiresInMinutes: 60*5 });
+        var userData =  {username:user.username,isAdmin:false,email:user.email,id:user._id};
+        var token = jwt.sign(userData, configs.apiSecret, { expiresInMinutes: configs.expiresInMinutes });
         res.json({ token: token });
 	});
     });

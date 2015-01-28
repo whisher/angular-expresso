@@ -17,7 +17,8 @@ module.exports = gulp.task('e2e',['webdriver'] ,function (done) {
             server.close();
             done();
             throw e;
-        }).on('end', function() {
+        })
+        .on('end', function() {
             server.close();
             done();
         });

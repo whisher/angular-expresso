@@ -25,9 +25,9 @@ exports.article = function(req, res, next, id) {
  */
 exports.create = function(req, res) {
   var article = new Article(req.body);
-  article.user = req.user;
+  article.user = mongoose.Types.ObjectId(req.user.id);
   article.save(function(err) {
-    if (err) {
+    if (err) {console.log(err);
       return res.status(500).json([{'param':'article','msg':'Cannot save the article'}]);
     }
     res.status(201).json(article);

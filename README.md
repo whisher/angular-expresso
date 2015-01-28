@@ -14,3 +14,5 @@ Angular expresso is a full-stack JavaScript open-source solution for an easy sta
 * use socket
 * cors
 * different way to manage user session (sign in, register) modal or dedicate view
+* different way to manage error status (404/500) nice page or raw message
+* no view in server side
