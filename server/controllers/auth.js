@@ -43,7 +43,7 @@ exports.signin = function(configs, passport) {
 	 if (err) {
 	     return res.status(500).json(utils.get500ErrorMessage(err));
         }
-        var userData =  {username:user.username,isAdmin:user.isAdmin(),email:user.email,id:user._id};
+        var userData =  {username:user.username, hasAdminRole:user.isAdmin(), email:user.email, id:user._id};
         var token = jwt.sign(userData, configs.apiSecret, { expiresInMinutes: configs.expiresInMinutes });
         res.json({ token: token });
         
@@ -51,6 +51,7 @@ exports.signin = function(configs, passport) {
     })(req, res, next);
   };
 };
+
 /**
  * Register
  */
@@ -76,7 +77,7 @@ exports.register  = function(configs) {
         if (err) {
 	   return res.status(500).json(utils.get500ErrorMessage(err));
         } 
-        var userData =  {username:user.username,isAdmin:false,email:user.email,id:user._id};
+        var userData =  {username:user.username,hasAdminRole:false,email:user.email,id:user._id};
         var token = jwt.sign(userData, configs.apiSecret, { expiresInMinutes: configs.expiresInMinutes });
         res.json({ token: token });
 	});

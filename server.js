@@ -78,9 +78,6 @@ app.use(function(err, req, res, next) {
   	if (err.status === 405) {
     		res.status(405).send('Method Not Allowed');
   	}
-  	if(configs.niceErrorPage){
-		return res.status(500).render('500');
-  	}
   	res.status(500).send('Internal Server Error');
 });
 

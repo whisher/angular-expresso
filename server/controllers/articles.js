@@ -40,7 +40,7 @@ exports.create = function(req, res) {
 exports.update = function(req, res) {
   var article = req.article;
   article = _.extend(article, req.body);
-  article.save(function(err) {
+  article.save(function(err) {console.log(err);
     if (err) {
       return res.status(500).json([{'param':'article','msg':'Cannot update the article'}]);
     }

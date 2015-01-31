@@ -1,11 +1,17 @@
 (function() {
 'use strict';
 
-function run($rootScope, $state, jwtHelper, signinModal, HAS_MODAL_LOGIN, UserTokenStorage, Auth) {
+function run($window, $rootScope, $state, jwtHelper, signinModal, HAS_MODAL_LOGIN, UserTokenStorage, Auth) {
   $rootScope.global  = {};
   $rootScope.global.isModalOpen  = false;
   $rootScope.global.errors = [];
-  
+  $window.onbeforeunload = function(e){
+    Auth.logout().then(function(response) {
+      UserTokenStorage.del();
+    })
+    .catch(function(response) {
+    });
+  };
   $rootScope.$on('auth-unauthorized', function(event, data) { 
     UserTokenStorage.del();
     if(HAS_MODAL_LOGIN){
@@ -60,7 +66,7 @@ function run($rootScope, $state, jwtHelper, signinModal, HAS_MODAL_LOGIN, UserTo
     if(!$rootScope.global.isAuthenticated){
       return false;
     }
-    if($rootScope.global.isAuthenticated.isAdmin){
+    if($rootScope.global.isAuthenticated.hasAdminRole){
       return true;
     }
     return  $rootScope.global.isAuthenticated.id === authorId;
@@ -82,6 +88,7 @@ function run($rootScope, $state, jwtHelper, signinModal, HAS_MODAL_LOGIN, UserTo
 }
 
 angular.module('auth',[
+  'ui.bootstrap',
   'ngStorage',
   'angular-jwt',
   'auth.services', 

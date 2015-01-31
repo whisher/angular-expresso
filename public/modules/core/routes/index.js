@@ -11,10 +11,6 @@ function config($stateProvider) {
         		.state('404', {
             		url: '/404',
             		templateUrl: 'core/templates/404.html'
-    		})
-        		.state('500', {
-            		url: '/500',
-            		templateUrl: 'core/templates/500.html'
     		});
 }
 

@@ -9,21 +9,21 @@
           <a data-ui-sref="article create" class="btn btn-primary pull-right">New</a>
       </div>
   </div>
-  <ul class="media-list" data-ng-if="articles.data.length > 0">
-    <li class="media" data-ng-repeat="article in articles.data track by article._id">
-      <span class="media-left">
-        <i class="fa fa-calendar">{{::article.created | date:'longDate'}}</i>
+  <ul class="article-list" data-ng-if="articles.data.length > 0">
+    <li class="article" data-ng-repeat="article in articles.data track by article._id">
+      <span class="article-thumb">
+        <i class="fa fa-calendar"> {{::article.created | date:'longDate'}}</i>
         <br>
         <i class="fa fa-user">{{::article.user.username}}</i>
       </span>
-      <div class="media-body">
-        <h3 class="media-heading"><a data-ui-sref="article show({ id: article._id })">{{::article.title}}</a></h3>
-        <div class="media-content">{{::article.content | truncate:50}}</div>
-        <div class="media-manager" data-ng-if="global.isOwner(article.user._id)">
+      <div class="article-body">
+        <h3><a data-ui-sref="article show({ id: article._id })">{{::article.title}}</a></h3>
+        <div class="article-content">{{::article.content | truncate:50}}</div>
+        <div class="article-bottom" data-ng-if="global.isOwner(article.user._id)">
           <a class="btn btn-warning btn-sm" data-ui-sref="article update({ id: article._id })">
             <i class="fa fa-pencil"></i> Update
           </a>
-          <a  class="btn btn-danger btn-sm" ng-click="articles.open(article)">
+          <a  class="btn btn-danger btn-sm" modal-article-destroy article="article">
             <i class="fa fa-trash"></i> Delete
           </a>
         </div>  

@@ -1,3 +1,29 @@
 .form-article{
 	background-color:$lightPrimaryColor;
 }
+.article-list{
+	@extend .list-unstyled;
+	margin:0;
+	padding:0;
+}
+.article{
+	@extend .clearfix; 
+	margin:0;
+	padding:0;
+}
+.article-thumb{
+	float:left;
+	width:150px;
+}
+.article-body{
+	margin-left:165px;
+	h3{
+		@extend .text-left;
+	}
+}
+.article-content{
+	@extend .text-left;
+}
+.article-bottom{
+	@extend .text-right;
+}

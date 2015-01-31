@@ -1,38 +1,20 @@
 (function() {
 'use strict';
 
-function ArticlesController($templateCache, $modal, articlesData, Articles, $state) {
+function ArticlesController($rootScope, $templateCache, $modal, articlesData, Articles, $state) {
   var articles = this;
   articles.data = articlesData.data;
-  articles.open = function (article) {
-    var modalInstance = $modal.open({
-      template:  $templateCache.get('articles/templates/modalDestroy.html'),
-      controller: 'ArticleDestroyController',
-      controllerAs: 'article',
-      size: 'sm',
-      resolve: {
-        articleData: function(){
-          return article;
-        }
-  	}
-    });
-    modalInstance.result.then(function (article) {
-      Articles.destroy(article._id).then(function(response) {
-        var data = [];
+  $rootScope.$on('article-has-been-deleted', function(event, id) { 
+    var data = [];
         angular.forEach(articles.data, function(value, key) {
-          if( value._id !== article._id){
+          if( value._id !== id){
             this.push(value);
           }
         }, data);
         articles.data = data;
-      })
-      .catch(function(response) {
-        console.log(response);
-      });
-     
-    });
-  };
+  });
 }
+
 function ArticleCreateController($state, Articles) {
       var article = this;
       article.title = 'Add';
@@ -46,6 +28,7 @@ function ArticleCreateController($state, Articles) {
 		});
 	};
 }
+
 function ArticleUpdateController($stateParams, $state, articleData, Articles) {
   var article = this;
   article.title = 'Update';
@@ -59,10 +42,12 @@ function ArticleUpdateController($stateParams, $state, articleData, Articles) {
     });
   };
 }
-function ArticleShowController($stateParams, articleData) {
+
+function ArticleShowController(articleData) {
   var article = this;
-  article.data = articleData.data;console.log(articleData.data);
+  article.data = articleData.data;
 }
+
 function ArticleDestroyController($modalInstance, articleData, Articles) {
   var article = this;
   article.data = articleData;
@@ -73,6 +58,7 @@ function ArticleDestroyController($modalInstance, articleData, Articles) {
     $modalInstance.dismiss('cancel');
   };
 }
+
 angular.module('articles.controllers', [])
     .controller('ArticlesController', ArticlesController)
     .controller('ArticleCreateController', ArticleCreateController)

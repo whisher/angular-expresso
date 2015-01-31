@@ -1,24 +1,43 @@
 (function() {
-  'use strict';
+'use strict';
 
-function showArticles(VERSION) {
+function modalArticleDestroy($rootScope, $modal, $templateCache, Articles) {
   return {
-      restrict: 'A',
-      link: function(scope, element) {
-        element.text('Version: ' + VERSION);
-      }
+    scope:{
+      article: '='
+    },
+    restrict: 'A',
+    link: function(scope, element) {
+      element.on('click',function() {
+        var modalInstance = $modal.open({
+      template:  $templateCache.get('articles/templates/modalDestroy.html'),
+      controller: 'ArticleDestroyController',
+      controllerAs: 'article',
+      size: 'sm',
+      resolve: {
+        articleData: function(){
+          return scope.article;
+        }
+    }
+    });
+    modalInstance.result.then(function (article) {
+      Articles.destroy(article._id).then(function(response) {
+        $rootScope.$emit('article-has-been-deleted', article._id);
+      })
+      .catch(function(response) {
+        console.log(response);
+      });
+     
+    });
+      });//click
+    }
   };
 }
-function moveCursorToEnd(el) {
-    if (typeof el.selectionStart == "number") {
-        el.selectionStart = el.selectionEnd = el.value.length;
-    } else if (typeof el.createTextRange != "undefined") {
-        el.focus();
-        var range = el.createTextRange();
-        range.collapse(false);
-        range.select();
-    }
-}
+
+
 angular.module('articles.directives', [])
-    .directive('showArticles', showArticles);
+  
+    .directive('modalArticleDestroy', modalArticleDestroy);
+    
 })();
+

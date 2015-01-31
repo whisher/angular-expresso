@@ -11,7 +11,7 @@ describe('Unit: UserRegisterController', function() {
         module('users.controllers');
     });
     
-    beforeEach(inject(function(_$rootScope_, _$location_, _$httpBackend_ ,_$controller_,  _Users_){
+    beforeEach(inject(function(_$rootScope_,_$controller_, _$location_, _$httpBackend_ ,  _Users_){
         $rootScope = _$rootScope_;
         $controller = _$controller_;
         $scope = $rootScope.$new();
@@ -28,9 +28,10 @@ describe('Unit: UserRegisterController', function() {
 
     it('should register with correct data', function() {
         spyOn($rootScope, '$emit');
-        $scope.user.username = 'myusertest';
-        $scope.user.email = 'me@gmail.com';
-        $scope.user.password = 'mypassword';
+        $scope.user.data = {};
+        $scope.user.data.username = 'myusertest';
+        $scope.user.data.email = 'me@gmail.com';
+        $scope.user.data.password = 'mypassword';
         $scope.user.save(); 
         var data = {token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im15dXNlcnRlc3QiLCJpc0FkbWluIjpmYWxzZSwiZW1haWwiOiJtZUBnbWFpbC5jb20iLCJpZCI6IjU0YzY1YjZlMGFkNTRmYjgxYTFlN2QyOSIsImlhdCI6MTQyMjI4NTY3OSwiZXhwIjoxNDIyMzAzNjc5fQ.HMUt7Vd7SoYe8ZkNq-I-WXf8GO8UJZQ6lzjW-XgU45I"};
         $httpBackend.expectPOST('/auth/register').respond(data);
@@ -69,8 +70,9 @@ describe('Unit: UserSigninController', function() {
 
     it('should sign in with correct data', function() {
         spyOn($rootScope, '$emit');
-        $scope.user.email = 'me@gmail.com';
-        $scope.user.password = 'mypassword';
+        $scope.user.data = {};
+        $scope.user.data.email = 'me@gmail.com';
+        $scope.user.data.password = 'mypassword';
         $scope.user.save(); 
         var data = {token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im15dXNlcnRlc3QiLCJpc0FkbWluIjpmYWxzZSwiZW1haWwiOiJtZUBnbWFpbC5jb20iLCJpZCI6IjU0YzY1YjZlMGFkNTRmYjgxYTFlN2QyOSIsImlhdCI6MTQyMjI4NTY3OSwiZXhwIjoxNDIyMzAzNjc5fQ.HMUt7Vd7SoYe8ZkNq-I-WXf8GO8UJZQ6lzjW-XgU45I"};
         $httpBackend.expectPOST('/auth/signin').respond(data);

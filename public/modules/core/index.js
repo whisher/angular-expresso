@@ -2,7 +2,6 @@
 'use strict';
 
 angular.module('core', [
-      	'ui.bootstrap',
       	'ui.router',
       	'templates',
 	'core.services',
