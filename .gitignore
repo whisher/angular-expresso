@@ -24,11 +24,5 @@ dist/
 public/tests/unit-result/
 log/
 
-# --------------------
-# App Secret
-# --------------------
-server/config/env/development.js
-server/config/env/production.js
-server/config/env/test.js
 
 
