@@ -17,3 +17,19 @@ Angular expresso is a full-stack JavaScript open-source solution for an easy sta
 * different way to manage user session (sign in, register) modal or dedicate view
 * different way to manage error status 404 nice page or raw message
 * no view in server side
+* all the templates cached using gulp-angular-templatecache
+* no bower_components in the root
+
+## Install
+* npm install
+* bower install
+* gulp
+
+### Production/Heroku
+* npm install
+* bower install
+* gulp --release
+* heroku create
+* heroku addons:add mongolab
+* git push heroku master
+* heroku open

@@ -2,16 +2,24 @@
 
 var assert = require("assert");
 var request = require('supertest');
-var app = require("../server");
+var path = require('path');
+var startFile = path.resolve(__dirname, '../../server.js');
+console.log(startFile);
+var app = require(startFile);
 
-describe('Array', function(){
-	describe('#indexOf()', function(){
-		it('should return -1 when the value is not present', function(){
-		      assert.equal(-1, [1,2,3].indexOf(5));
-		      assert.equal(-1, [1,2,3].indexOf(0));
-		});
-  	});
-});
+/*describe('Api', function(){
+	it('should return 200 on /', function(){
+		 request(app)
+            .get('/')
+            .expect(200)     
+            .end(function(err, res){
+              if (err) return done(err)
+                done()
+            })
+      });
+  	
+});*/
+/*
 describe('User Api', function () {
 	var user = {email:'io@il.it',password:'ppppp'};
 	it('should return 200 on /', function (done) {
@@ -31,4 +39,4 @@ describe('User Api', function () {
       			.expect("marcus is stored", done);
       	});
 	
-})
+})*/

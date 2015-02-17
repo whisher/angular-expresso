@@ -5,12 +5,13 @@ function run($window, $rootScope, $state, jwtHelper, signinModal, HAS_MODAL_LOGI
   $rootScope.global  = {};
   $rootScope.global.isModalOpen  = false;
   $rootScope.global.errors = [];
+
   $window.onbeforeunload = function(e){
-    Auth.logout().then(function(response) {
+    /*Auth.logout().then(function(response) {
       UserTokenStorage.del();
     })
     .catch(function(response) {
-    });
+    });*/
   };
   $rootScope.$on('auth-unauthorized', function(event, data) { 
     UserTokenStorage.del();
@@ -44,6 +45,7 @@ function run($window, $rootScope, $state, jwtHelper, signinModal, HAS_MODAL_LOGI
     $rootScope.global.current[current]  = true;
     $rootScope.global.errors.length = 0;
   };
+
   var token = UserTokenStorage.get();
   if(token){
     token = jwtHelper.decodeToken(token);

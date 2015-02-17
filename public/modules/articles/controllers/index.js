@@ -1,7 +1,7 @@
 (function() {
 'use strict';
 
-function ArticlesController($rootScope, $templateCache, $modal, articlesData, Articles, $state) {
+function ArticlesController($rootScope, $templateCache, $modal, articlesData, Articles, Socket) {
   var articles = this;
   articles.data = articlesData.data;
   $rootScope.$on('article-has-been-deleted', function(event, id) { 

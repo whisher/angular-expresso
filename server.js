@@ -11,6 +11,8 @@ var fs = require('fs'),
 	path = require('path'),
 	passport = require('passport'),
 	errorHandler = require('errorhandler'),
+	sio = require('socket.io'),
+	socketio_jwt = require('socketio-jwt'),
 	configs = require('./server/config/config'),
 	auth = require('./server/middlewares/auth'),
 	jwt = require('./server/middlewares/jwt')(configs);
@@ -57,6 +59,8 @@ router.use(function(req, res, next) {
 app.use('/api', router);
 */
 // Routes
+
+require(configs.serverPath+'/routers/index')(app);
 require(configs.serverPath+'/routers/auth')(app, auth, configs, passport);
 require(configs.serverPath+'/routers/users')(app, auth);
 require(configs.serverPath+'/routers/articles')(app, auth, jwt);
@@ -94,12 +98,18 @@ app.use(function(req, res) {
 if (app.get('env') === 'development') {
 	app.use(errorHandler());
 }
-var server = http.createServer(app);
-var io = require('socket.io')(server);
 
-io.on('connection', function(socket){
-	console.log('a user connected');
-});
+var server = http.createServer(app);
+var io = sio(server);
+
+io.use(socketio_jwt.authorize({
+  secret: configs.apiSecret,
+  handshake: true
+}));
+
+io.on('connection', require(configs.serverPath+'/routers/socket')(io));
+
+
 server.listen(app.get('port'), function () {
 	console.log( 'Express started on http://localhost:' + 
 		app.get('port') + ' env: ' + app.get('env') +  '; press Ctrl-C to terminate.' );

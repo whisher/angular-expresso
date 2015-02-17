@@ -20,7 +20,7 @@
                 <ul class="nav navbar-nav">
                     <a data-ui-sref="home" class="navbar-brand"><i class="logo"></i> Angular Express</a>
                     <li ui-sref-active="active"><a data-ui-sref="home">Home</a></li>
-                    <li ui-sref-active="active"><a data-ui-sref="articles">Articles</a></li>
+                    <li ui-sref-active="active"><a data-ui-sref="articles">Articles <span class="badge"><i class="fa fa-eye"></i></span></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" data-ng-if="!global.isAuthenticated">
                     <li><a href="" data-ng-click="global.signin()">Sign In</a></li>
@@ -42,13 +42,6 @@
         </div>
         <div ui-view class="view-animation"></div>
         <script src="/socket.io/socket.io.js"></script>
-        <script>
-            var socket = io();
-            socket.on('connect', function(){
-                
-            });
-        </script>
-        <!--cordova-->
         <!--vendor-->
         <!--scripts-->
     </body>

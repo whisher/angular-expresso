@@ -5,3 +5,6 @@ auth setJwtUser is Admin()
 Find a better way to manage 404/500
 gulp images
 Markdown formatting
+path unit result src
+onbeforeunload
+fontawsome sass file shorcut the main file instead of all the list

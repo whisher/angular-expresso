@@ -1,7 +1,10 @@
 'use strict';
-
+var db = process.env.MONGOLAB_URI ||
+    process.env.MONGOHQ_URL ||
+    'mongodb://localhost/angular-expresso-prod';
+    
 module.exports = {
-  db: 'mongodb://' + (process.env.DB_PORT_27017_TCP_ADDR || 'localhost') + '/angular-express-prod',
+  db:db,
   /**
    * Database options that will be passed directly to mongoose.connect
    * Below are some examples.

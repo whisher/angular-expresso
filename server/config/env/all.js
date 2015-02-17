@@ -1,7 +1,7 @@
 'use strict';
 
 var path = require('path'),
-  rootPath = process.cwd(),
+  rootPath =  path.resolve(__dirname, '../../../'),
   serverPath = rootPath + '/server',
   staticPath = rootPath + '/build'; 
 

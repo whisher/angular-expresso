@@ -13,6 +13,7 @@ var compression = require('compression'),
   session = require('express-session'),
   mongoStore = require('connect-mongo')(session),
   flash = require('connect-flash'),
+  helmet = require('helmet'),
   expressLogger = require('express-logger');
 
 
@@ -97,7 +98,12 @@ module.exports = function(config, app, passport, db) {
   // Connect flash for flash messages
   app.use(flash());
 
-  // for Security
-  app.disable('x-powered-by');
+  // Use helmet to secure Express headers
+  app.use(helmet.xframe());
+  app.use(helmet.xssFilter());
+  app.use(helmet.nosniff());
+  app.use(helmet.ienoopen());
+  app.use(helmet.hidePoweredBy());
+  
 
 };
