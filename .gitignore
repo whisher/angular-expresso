@@ -20,7 +20,6 @@ bower_components
 # --------------------
 build/
 tmp/
-dist/
 public/tests/unit-result/
 log/
 

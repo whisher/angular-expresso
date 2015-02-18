@@ -1,12 +1,19 @@
 (function() {
   'use strict';
 
-function Socket(socketFactory, UserTokenStorage) {
-	var ioSocket = io.connect('?token=' + UserTokenStorage.get());
-	var socket = socketFactory({
-    		ioSocket: ioSocket
-  	});
-	return socket;
+function Socket(socketFactory) {
+	var socket;
+	return {
+		set:function(token){console.log('token',token);
+			var ioSocket = io.connect('?token=' + token);
+			socket = socketFactory({
+		    		ioSocket: ioSocket
+		  	});
+		},
+		get:function(){
+			return socket;
+		}
+	};
 }
 
 angular.module('socket.services', [])

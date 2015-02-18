@@ -58,8 +58,18 @@ router.use(function(req, res, next) {
 });
 app.use('/api', router);
 */
-// Routes
 
+//Cluster debug
+/*if (app.get('env') === 'development') {
+	app.use(function(req,res,next){
+		var cluster = require('cluster');
+		if(cluster.isWorker) {
+			console.log('Worker %d received request',cluster.worker.id);
+		}
+	});
+}*/
+
+// Routes
 require(configs.serverPath+'/routers/index')(app);
 require(configs.serverPath+'/routers/auth')(app, auth, configs, passport);
 require(configs.serverPath+'/routers/users')(app, auth);

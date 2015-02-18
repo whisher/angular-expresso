@@ -1,7 +1,7 @@
 (function() {
 'use strict';
 
-function ArticlesController($rootScope, $templateCache, $modal, articlesData, Articles, Socket) {
+function ArticlesController($rootScope, $templateCache, $modal, articlesData, Articles) {
   var articles = this;
   articles.data = articlesData.data;
   $rootScope.$on('article-has-been-deleted', function(event, id) { 
@@ -15,18 +15,19 @@ function ArticlesController($rootScope, $templateCache, $modal, articlesData, Ar
   });
 }
 
-function ArticleCreateController($state, Articles) {
-      var article = this;
-      article.title = 'Add';
-    	article.data = {};
-    	article.save = function() {
-    		Articles.create(article.data).then(function(response) {
-		      $state.go('articles');
-		})
-		.catch(function(response) {
-			article.errors = response.data;
-		});
-	};
+function ArticleCreateController($state, Articles, Socket) {
+  var article = this;
+  article.title = 'Add';
+  article.data = {};
+  article.save = function() {
+    Articles.create(article.data).then(function(response) {
+      Socket.get().emit('article add', response.data);
+      $state.go('articles');
+    })
+    .catch(function(response) {
+      article.errors = response.data;
+    });
+  };
 }
 
 function ArticleUpdateController($stateParams, $state, articleData, Articles) {
@@ -59,7 +60,7 @@ function ArticleDestroyController($modalInstance, articleData, Articles) {
   };
 }
 
-angular.module('articles.controllers', [])
+angular.module('articles.controllers', ['socket'])
     .controller('ArticlesController', ArticlesController)
     .controller('ArticleCreateController', ArticleCreateController)
     .controller('ArticleUpdateController', ArticleUpdateController)

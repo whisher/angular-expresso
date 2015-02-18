@@ -1,7 +1,7 @@
 (function() {
 'use strict';
 
-function run($window, $rootScope, $state, jwtHelper, signinModal, HAS_MODAL_LOGIN, UserTokenStorage, Auth) {
+function run($window, $rootScope, $state, jwtHelper, signinModal, HAS_MODAL_LOGIN, UserTokenStorage, Auth, Socket) {
   $rootScope.global  = {};
   $rootScope.global.isModalOpen  = false;
   $rootScope.global.errors = [];
@@ -27,7 +27,17 @@ function run($window, $rootScope, $state, jwtHelper, signinModal, HAS_MODAL_LOGI
 
   $rootScope.$on('auth-is-authenticated', function(event, data) { 
     UserTokenStorage.set(data);
-    $rootScope.global.isAuthenticated =  jwtHelper.decodeToken(UserTokenStorage.get());
+    $rootScope.global.isAuthenticated =  jwtHelper.decodeToken(UserTokenStorage.get()); 
+    Socket.set(data);
+    Socket.get().on('connect', function(){
+          console.log('Connect');
+    });
+    Socket.get().on('error', function(error) {
+      console.log('Socket io error :', error.type);
+        if (error.type === 'UnauthorizedError' || error.code === 'invalid_token') {
+            return $state.go('home');
+        }
+    });
   });
 
   $rootScope.global.current = {};
@@ -95,7 +105,8 @@ angular.module('auth',[
   'angular-jwt',
   'auth.services', 
   'auth.controllers', 
-  'auth.routes'
+  'auth.routes',
+  'socket'
   ])
   .run(run);
             
