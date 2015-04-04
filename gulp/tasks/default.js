@@ -13,10 +13,11 @@ module.exports = gulp.task('default', function() {
                 );
     } else {
         runSequence(
-                'clean',
+               'clean',
                 ['index', 'styles', 'fonts', 'assets', 'templates', 'hint'],
                 ['vendor','scripts'],
-                'watch'
+                ['serve'],
+                ['watch']
        );
     }
 }

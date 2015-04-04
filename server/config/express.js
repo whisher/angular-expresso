@@ -14,12 +14,14 @@ var compression = require('compression'),
   mongoStore = require('connect-mongo')(session),
   flash = require('connect-flash'),
   helmet = require('helmet'),
-  expressLogger = require('express-logger');
-
-
+  expressLogger = require('express-logger'),
+  jsonProtection = require('../middlewares/json.protection'),
+  csrf = require('csurf');
 
 module.exports = function(config, app, passport, db) {
-  app.set('showStackError', true);
+
+  // show error on screen. False for all envs except development
+  app.set('showStackError', (app.get('env') === 'development'));
 
   // Prettify HTML
   app.locals.pretty = true;
@@ -28,11 +30,14 @@ module.exports = function(config, app, passport, db) {
   if (app.get('env') === 'development') {
     // Disable views cache
     app.set('view cache', false);
-  } else if (app.get('env') === 'production') {
+  } 
+  else if (app.get('env') === 'production') {
     app.locals.cache = 'memory';
   }
 
-  // Should be placed before express.static
+  //Json vulnerability protection
+  app.use(jsonProtection);
+
   // To ensure that all assets and data are compressed (utilize bandwidth)
   app.use(compression({
     // Levels are specified in a range of 0 to 9, where-as 0 is
@@ -70,10 +75,6 @@ module.exports = function(config, app, passport, db) {
   }));
   app.use(methodOverride());
 
-  
-
- 
-
   // Express/Mongo session storage
   app.use(session({
     secret: config.sessionSecret,
@@ -87,13 +88,9 @@ module.exports = function(config, app, passport, db) {
     saveUninitialized: true
   }));
 
- 
-
   // Use passport session
   app.use(passport.initialize());
   app.use(passport.session());
-
- 
 
   // Connect flash for flash messages
   app.use(flash());
@@ -104,6 +101,18 @@ module.exports = function(config, app, passport, db) {
   app.use(helmet.nosniff());
   app.use(helmet.ienoopen());
   app.use(helmet.hidePoweredBy());
-  
 
+  //xsrf vulnerability protection
+  app.use(csrf());
+  app.use(function(req, res, next) {
+    res.cookie('XSRF-TOKEN', req.csrfToken());
+    next();
+  });
+  app.use(function (err, req, res, next) {
+    if (err.code !== 'EBADCSRFTOKEN'){ 
+      return next(err);
+    }
+    // handle CSRF token errors here
+    res.status(403).send('Forbidden');
+  });
 };

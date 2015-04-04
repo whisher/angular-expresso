@@ -9,6 +9,8 @@ global.BUILD_FOLDER = 'build';
 global.RELEASE_FOLDER = 'dist';
 global.TMP_FOLDER = 'tmp';
 
+var jsExt = (release)?'.min.js':''+'.js';
+
 var config = {
     paths: {
         src: {
@@ -20,13 +22,13 @@ var config = {
                 SRC_FOLDER + '/modules/**/*.js'
             ],
             vendor:[
-                'bower_components/angular/angular.js',
-                'bower_components/angular-ui-router/release/angular-ui-router.js',
-                'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-                'bower_components/angular-animate/angular-animate.js',
-                'bower_components/ngstorage/ngStorage.js',
-                'bower_components/angular-jwt/dist/angular-jwt.js',
-                 'bower_components/angular-socket-io/socket.js'
+                'bower_components/angular/angular'+jsExt,
+                'bower_components/angular-ui-router/release/angular-ui-router'+jsExt,
+                'bower_components/angular-bootstrap/ui-bootstrap-tpls'+jsExt,
+                'bower_components/angular-animate/angular-animate'+jsExt,
+                'bower_components/ngstorage/ngStorage'+jsExt,
+                'bower_components/angular-jwt/dist/angular-jwt'+jsExt,
+                'bower_components/angular-socket-io/socket'+jsExt,
             ],
             fonts: [
                 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/**',

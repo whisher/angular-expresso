@@ -1,7 +1,5 @@
 body {
   color: #222;
-  text-align: center;
-  
 }
 .logo{
   @extend .fa; 
@@ -17,6 +15,7 @@ body {
 [ng-cloak] {display: none;}
 [ng-cloak].overlay {
   display: block !important;
+  text-align: center;
   bottom: 0;
   background-color: $primaryTextColor;
   left: 0;

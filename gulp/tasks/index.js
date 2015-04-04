@@ -4,6 +4,8 @@ var gulp = require('gulp');
 var gulpif = require('gulp-if');
 var replace = require('gulp-replace');
 var minifyHTML = require('gulp-minify-html');
+var browserSync = require('browser-sync');
+var reload      = browserSync.reload;
 
 module.exports = gulp.task('index', function () {
   return gulp.src(config.paths.src.index)
@@ -17,7 +19,6 @@ module.exports = gulp.task('index', function () {
     .pipe(
       replace('<!--scripts-->', '<script src="scripts/' + config.filenames.scripts + '"></script>')
     )
-    .pipe(gulpif(release,
-    gulp.dest(config.paths.dest.dist.index),
-          gulp.dest(config.paths.dest.build.index)));
+    .pipe(gulpif(release,gulp.dest(config.paths.dest.dist.index),gulp.dest(config.paths.dest.build.index)))
+    .pipe(reload({stream:true}));
 });

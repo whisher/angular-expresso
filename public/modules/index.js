@@ -2,7 +2,7 @@
 'use strict';
 
 angular.element(document).ready(function() {
-    angular.bootstrap(document, ['app']);
+    angular.bootstrap(document, ['app'],{strictDi:true});
 });
 
 function config($locationProvider, $urlRouterProvider, $logProvider, $httpProvider, DEBUG) {

@@ -1,28 +1,20 @@
-//'use strict'; It's uncommented beacuse of this.emit('end');
+'use strict';
 
 var gulp = require('gulp');
-var gulpif = require('gulp-if');
-var rename = require('gulp-rename');
-var csso = require('gulp-csso');
-var autoprefixer = require('gulp-autoprefixer');
 var sass = require('gulp-ruby-sass');
+var sourcemaps = require('gulp-sourcemaps');
+var rename = require('gulp-rename');
+var gulpif = require('gulp-if');
+var browserSync = require('browser-sync');
+var reload      = browserSync.reload;
 
-function handleError(err) {
-  console.log(err.toString());
-  this.emit('end'); 
-}
-
-var sassOptions = { // The options to be passed to sass()
-    style: 'expanded', 
-    'sourcemap=none': true 
-};
-
-//https://github.com/jgoux/generator-angulpify/issues/19
-module.exports = gulp.task('styles', function () {
-  return gulp.src(config.paths.src.mainStyles)
-    .pipe(autoprefixer('last 1 version'))
-    .pipe(gulpif(release, csso()))
-    .pipe(gulpif(release, sass(sassOptions).on('error', handleError), sass(sassOptions).on('error', handleError)))
-    .pipe(rename(config.filenames.styles))
-    .pipe(gulpif(release, gulp.dest(config.paths.dest.dist.styles), gulp.dest(config.paths.dest.build.styles) ));
+module.exports = gulp.task('styles', function() {
+    return sass(config.paths.src.mainStyles, { sourcemap: true })
+      .on('error', function (err) {
+          console.error('Error', err.message);
+    })
+  .pipe(sourcemaps.write())
+  .pipe(rename(config.filenames.styles))
+  .pipe(gulpif(release, gulp.dest(config.paths.dest.dist.styles), gulp.dest(config.paths.dest.build.styles) ))
+  .pipe(reload({stream:true}));
 });

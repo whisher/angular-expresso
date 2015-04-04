@@ -45,7 +45,7 @@ exports.signin = function(configs, passport) {
         }
         var userData =  {username:user.username, hasAdminRole:user.isAdmin(), email:user.email, id:user._id};
         var token = jwt.sign(userData, configs.apiSecret, { expiresInMinutes: configs.expiresInMinutes });
-        res.json({ token: token });
+        res.status(201).json({ token: token });
         
       });
     })(req, res, next);
@@ -79,7 +79,7 @@ exports.register  = function(configs) {
         } 
         var userData =  {username:user.username,hasAdminRole:false,email:user.email,id:user._id};
         var token = jwt.sign(userData, configs.apiSecret, { expiresInMinutes: configs.expiresInMinutes });
-        res.json({ token: token });
+        res.status(201).json({ token: token });
 	});
     });
   };
