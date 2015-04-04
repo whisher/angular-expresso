@@ -7,16 +7,15 @@ Angular expresso is a full-stack JavaScript open-source solution for an easy sta
 * [ANIMATE SASS](https://daneden.me/animate)
 
 ## Features
-* use sass
-* use JSON Web Tokens (auth0)
-* use a smart easy customizable animation
-* use not intrusive splash screen
 * use gulp
-* use socket
-* cors
+* use sass
+* use socket.io
+* use helmet
+* use JSON Web Tokens (auth0)
+* json vulnerability protection
+* xsrf vulnerability protection
 * different way to manage user session (sign in, register) modal or dedicate view
 * different way to manage error status 404 nice page or raw message
-* no view in server side
 * all the templates cached using gulp-angular-templatecache
 * no bower_components in the root
 
