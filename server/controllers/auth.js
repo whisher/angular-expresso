@@ -5,8 +5,7 @@
  */
 var mongoose = require('mongoose'),
 	User = mongoose.model('User'),
-      jwt = require('jsonwebtoken'),
-	utils = require('../utils/errors');
+      jwt = require('jsonwebtoken');
 
 /**
  * just logged route
@@ -21,7 +20,7 @@ exports.isjustlogged = function(req, res) {
 /**
  * Try to signin  an user
  */
-exports.signin = function(configs, passport) {
+exports.signin = function(app, passport) {
   return function(req, res,next) {
     req.checkBody('email', 'You must enter a valid email address').isEmail();
     req.checkBody('password', 'Password must be between 8-20 characters long').len(8, 20);
@@ -34,17 +33,17 @@ exports.signin = function(configs, passport) {
     }
     passport.authenticate('local', function(err, user, info) {
       if (err) {
-        return res.status(500).json(utils.get500ErrorMessage(err));
+        return res.status(500).json(err);
       }
       if (!user) {
-        return res.status(403).json(utils.get500ErrorMessage(info));
+        return res.status(403).json(info);
       }
       req.login(user, function(err) {
 	 if (err) {
-	     return res.status(500).json(utils.get500ErrorMessage(err));
+	     return res.status(500).json(err);
         }
         var userData =  {username:user.username, hasAdminRole:user.isAdmin(), email:user.email, id:user._id};
-        var token = jwt.sign(userData, configs.apiSecret, { expiresInMinutes: configs.expiresInMinutes });
+        var token = jwt.sign(userData, app.locals.apiSecret, { expiresInMinutes: app.locals.tokenExpiresInMinutes });
         res.status(201).json({ token: token });
         
       });
@@ -55,7 +54,7 @@ exports.signin = function(configs, passport) {
 /**
  * Register
  */
-exports.register  = function(configs) {
+exports.register  = function(app) {
   return function(req, res, next) {
     if (req.isAuthenticated()) {
       return req.sendStatus(403);
@@ -71,14 +70,14 @@ exports.register  = function(configs) {
     var user = new User(req.body);
     user.save(function(err) {
       if (err) {
-	 return res.status(500).json(utils.get500ErrorMessage(err));
+	 return res.status(500).json(err);
 	} 
 	req.login(user, function(err) {
         if (err) {
-	   return res.status(500).json(utils.get500ErrorMessage(err));
+	   return res.status(500).json(err);
         } 
         var userData =  {username:user.username,hasAdminRole:false,email:user.email,id:user._id};
-        var token = jwt.sign(userData, configs.apiSecret, { expiresInMinutes: configs.expiresInMinutes });
+        var token = jwt.sign(userData, app.locals.apiSecret, { expiresInMinutes: app.locals.tokenExpiresInMinutes});
         res.status(201).json({ token: token });
 	});
     });

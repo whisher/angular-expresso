@@ -24,17 +24,14 @@ module.exports = {
   hostname: process.env.HOST || process.env.HOSTNAME,
   db: process.env.MONGOHQ_URL,
   templateEngine: 'ejs',
-
-
   // The secret should be set to a non-guessable string that
   // is used to compute a session hash
-  apiSecret: 'Angular-Express',
-  sessionSecret: 'Angular-Express',
+  apiSecret: 'Angular-Expresso',
+  sessionSecret: 'Angular-Expresso',
   // Time Expiration token
-  expiresInMinutes: 60*5,
+  tokenExpiresInMinutes: 60*5,
   // The name of the MongoDB collection to store sessions in
   sessionCollection: 'sessions',
-
   // The session cookie settings
   sessionCookie: {
     path: '/',
@@ -48,7 +45,6 @@ module.exports = {
     // at all. The cookie will expunge when the browser is closed.
     maxAge: null
   },
-
   // The session cookie name
   sessionName: 'connect.sid',
   // If true when there is a 404/500 status the app use the 404/500 route

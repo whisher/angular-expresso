@@ -4,6 +4,6 @@
  * Module dependencies.
  */
 var expressJwt = require('express-jwt');
-module.exports = function(configs) {
-  return expressJwt({secret: configs.apiSecret});
+module.exports = function(app) {
+  return expressJwt({secret: app.locals.apiSecret});
 };

@@ -22,7 +22,6 @@ var fs = require('fs'),
 	socketio_jwt = require('socketio-jwt'),
 	configs = require('./server/config/config'),
 	auth = require('./server/middlewares/auth'),
-	jwt = require('./server/middlewares/jwt')(configs),
 	debug = require('debug'),
 	info = debug('app:info'),
 	error = debug('app:error');
@@ -40,7 +39,7 @@ fs.readdirSync(modelsPath).forEach(function (file) {
 require(configs.serverPath+'/config/passport')(passport);
 
 // Set up express
-require(configs.serverPath+'/config/express')(configs,app,passport,db);
+require(configs.serverPath+'/config/express')(configs, app, passport, db);
 
 //No 304 status 
 if (app.get('env') === 'development') {
@@ -56,9 +55,9 @@ app.use(express.static( path.join(configs.rootPath, configs.releasePath)));
 
 // Routes
 require(configs.serverPath+'/routers/index')(app);
-require(configs.serverPath+'/routers/auth')(app, auth, configs, passport);
-require(configs.serverPath+'/routers/users')(app, auth);
-require(configs.serverPath+'/routers/articles')(app, auth, jwt);
+require(configs.serverPath+'/routers/auth')(app);
+require(configs.serverPath+'/routers/users')(app);
+require(configs.serverPath+'/routers/articles')(app);
 
 app.use(function(err, req, res, next) {
 	// If the error object doesn't exists

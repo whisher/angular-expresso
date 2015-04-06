@@ -10,6 +10,7 @@ Angular expresso is a full-stack JavaScript open-source solution for an easy sta
 * use gulp
 * use sass
 * use socket.io
+* use socket custom namespaces
 * use helmet
 * use JSON Web Tokens (auth0)
 * json vulnerability protection

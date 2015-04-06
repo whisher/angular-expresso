@@ -5,10 +5,10 @@ var db = process.env.MONGOLAB_URI ||
 module.exports = {
   db: db,
   debug: true,
-   mongoose: {
+  mongoose: {
     debug: false
   },
   app: {
-    name: 'Angular Express - Mean stack'
+    name: 'Angular Expresso - Mean stack'
   }
 };

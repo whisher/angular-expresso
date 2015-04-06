@@ -3,8 +3,11 @@
 /**
  * Module dependencies.
  */
-var articles = require('../controllers/articles');
-module.exports = function(app, auth, jwt) {
+var articles = require('../controllers/articles'),
+  auth = require('../middlewares/auth');
+  
+module.exports = function(app) {
+  var jwt = require('../middlewares/jwt')(app);
 
   // Send available options on OPTIONS requests
   app.options( '/api/articles', function (req, res) {
