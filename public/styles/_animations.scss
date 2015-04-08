@@ -1,28 +1,8 @@
-@if $view-animation == true {
-    .view-animation.ng-enter{
-        -webkit-animation: fadeIn 1s;
-        -moz-animation: fadeIn 1s;
-        -o-animation: fadeIn 1s;
-        animation: fadeIn 1s;
-    }
-    .view-animation.ng-leave{
-        -webkit-animation: fadeOut 1s;
-        -moz-animation: fadeOut 1s;
-        -o-animation: fadeOut 1s;
-        animation: fadeOut 1s;
-    }
+.view-animation.ng-enter{
+  -webkit-transition: 1.5s linear all;
+  transition: 1.5s linear all;
+  opacity: 0;
 }
-@if $repeat-animation-errors == true {
-    .repeat-animation-errors.ng-enter, .repeat-animation-errors.ng-move{
-        -webkit-animation: fadeIn 1s;
-        -moz-animation: fadeIn 1s;
-        -o-animation: fadeIn 1s;
-        animation: fadeIn 1s;
-    }
-    .repeat-animation-errors.ng-leave{
-        -webkit-animation: fadeOut 1s;
-        -moz-animation: fadeOut 1s;
-        -o-animation: fadeOut 1s;
-        animation: fadeOut 1s;
-    }
+.view-animation.ng-enter.ng-enter-active{
+  opacity: 1;
 }

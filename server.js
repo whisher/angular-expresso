@@ -53,12 +53,17 @@ app.set('port', process.env.PORT || 3000);
 app.use(favicon(path.join(configs.rootPath,configs.releasePath,'favicon.ico')));
 app.use(express.static( path.join(configs.rootPath, configs.releasePath)));
 
-// Routes
-require(configs.serverPath+'/routers/index')(app);
-require(configs.serverPath+'/routers/auth')(app);
-require(configs.serverPath+'/routers/users')(app);
-require(configs.serverPath+'/routers/articles')(app);
+// Bootstrap routes
+var routesPath = path.join(configs.serverPath+ '/routes');
+fs.readdirSync(routesPath)
+	.filter(function (file) {
+		return file !== 'socket.js';
+	})
+	.forEach(function (file) {
+		require(routesPath + '/' + file)(app);
+	});
 
+// Catch not 404 status
 app.use(function(err, req, res, next) {
 	// If the error object doesn't exists
 	if (!err){
@@ -76,9 +81,9 @@ app.use(function(err, req, res, next) {
   	res.status(500).send('Internal Server Error');
 });
 
-// Assume 404 since no middleware responded
+// Catch 404 status
 app.use(function(req, res) {
-	// Log it
+	// Assume 404 since no middleware responded
 	error(req.url);
 	if(configs.niceErrorPage){
 		return res.status(404).render('404');
@@ -92,13 +97,17 @@ if (app.get('env') === 'development') {
 }
 
 // Set up socket.io
-var server = http.createServer(app);
-var io = sio(server);
-io.use(socketio_jwt.authorize({
-  secret: configs.apiSecret,
-  handshake: true
-}));
-io.on('connection', require(configs.serverPath+'/routers/socket')(io));
+var server = http.createServer(app),
+	io = sio(server),
+	articlesNs = io.of('/articles');
+
+articlesNs.use(
+	socketio_jwt.authorize({
+  		secret: configs.apiSecret,
+  		handshake: true
+	})
+);
+articlesNs.on('connection', require(configs.serverPath+'/routes/articles.socket')(articlesNs));
 
 // Binds and listens for connections
 server.listen(app.get('port'), function () {

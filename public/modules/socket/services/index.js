@@ -1,21 +1,19 @@
 (function() {
   'use strict';
 
-function Socket(socketFactory) {
+function SocketArticles(socketFactory, UserTokenStorage) {
 	var socket;
-	return {
-		set:function(token){console.log('token',token);
-			var ioSocket = io.connect('?token=' + token);
-			socket = socketFactory({
-		    		ioSocket: ioSocket
-		  	});
-		},
+	return{
 		get:function(){
-			return socket;
-		}
+			var ioSocket = io.connect(':3000/articles?token=' + UserTokenStorage.get());
+			var socket = socketFactory({
+    				ioSocket: ioSocket
+  			});
+			return socket;	
+		}	
 	};
+	
 }
-
 angular.module('socket.services', [])
-	.factory('Socket', Socket);
+   .factory('SocketArticles', SocketArticles);
 })();

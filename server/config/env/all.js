@@ -29,7 +29,7 @@ module.exports = {
   apiSecret: 'Angular-Expresso',
   sessionSecret: 'Angular-Expresso',
   // Time Expiration token
-  tokenExpiresInMinutes: 60*5,
+  tokenExpiresInMinutes:1,
   // The name of the MongoDB collection to store sessions in
   sessionCollection: 'sessions',
   // The session cookie settings

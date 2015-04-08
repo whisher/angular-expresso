@@ -15,19 +15,20 @@ function ArticlesController($rootScope, $templateCache, $modal, articlesData, Ar
   });
 }
 
-function ArticleCreateController($state, Articles, Socket) {
+function ArticleCreateController($state, Articles, SocketArticles) {
   var article = this;
   article.title = 'Add';
   article.data = {};
   article.save = function() {
     Articles.create(article.data).then(function(response) {
-      Socket.get().emit('article add', response.data);
+      SocketArticles.get().emit('article add', response.data);
       $state.go('articles');
     })
     .catch(function(response) {
       article.errors = response.data;
     });
   };
+
 }
 
 function ArticleUpdateController($stateParams, $state, articleData, Articles) {

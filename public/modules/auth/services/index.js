@@ -24,16 +24,16 @@ function Auth($http) {
   };
 }
 
-function UserTokenStorage($sessionStorage) {
+function UserTokenStorage($localStorage) {
   return {
     set: function(token) {
-        $sessionStorage.token = token;
+        $localStorage.token = token;
     },
     get: function() {
-        return $sessionStorage.token; 
+        return $localStorage.token; 
     },
     del: function() {
-        $sessionStorage.$reset();
+        $localStorage.$reset();
     }
   };
 }

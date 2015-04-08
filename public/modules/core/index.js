@@ -1,6 +1,10 @@
 (function() {
 'use strict';
 
+function run($rootScope) {
+    $rootScope.global  = {};
+}
+
 angular.module('core', [
       	'ui.router',
       	'templates',
@@ -8,8 +12,8 @@ angular.module('core', [
       	'core.directives',
       	'core.controllers',
      	'core.routes'
-]);
-
+])
+.run(run);
 
 })();
 
